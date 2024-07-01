@@ -5,7 +5,7 @@ export const MarqueeComp = () => {
     <div className="bg-black text-white py-3 md:py-4">
       <Marquee speed={50}>
         {Array.from({ length: 5 }).map((_, index) => (
-          <div className="flex items-center">
+          <div key={index} className="flex items-center">
             <p className="text-xs font-bold">
               Unlock Savings: 30% Off for a Limited Time Applied Automatically
               at Checkout. Shop Now!
