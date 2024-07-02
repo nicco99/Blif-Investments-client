@@ -5,7 +5,7 @@ import { Logo } from "./Logo";
 
 export const Header = () => {
   return (
-    <header className="px-12 py-4 bg-slate-100">
+    <header className="z-50 w-full px-12 py-4 bg-slate-200/50">
       <div className="flex items-center justify-between">
         {/* LOGO */}
         <Logo />

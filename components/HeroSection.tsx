@@ -52,8 +52,8 @@ export const HeroSection = () => {
           </div>
         </CarouselItem>
       </CarouselContent>
-      <CarouselPrevious className="left-1 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:left-[5%] md:left-[10%]" />
-      <CarouselNext className="right-1 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:right-[5%] md:right-[10%]" />
+      <CarouselPrevious className="left-1 h-14 w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:left-[5%] md:left-[10%]" />
+      <CarouselNext className="right-1 h-14 w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:right-[5%] md:right-[10%]" />
     </Carousel>
   );
 };
