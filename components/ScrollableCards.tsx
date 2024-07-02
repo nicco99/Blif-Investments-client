@@ -70,7 +70,7 @@ export const ScrollableCards = () => {
                           />
                         </div>
                       </Link>
-                      <Button className="hidden group-hover:block bg-black hover:bg-black/70 text-xs absolute bottom-4 right-4 rounded-3xl">
+                      <Button className="hidden group-hover:block bg-black hover:bg-black/80 text-xs absolute bottom-4 right-4 rounded-3xl">
                         + Quick add
                       </Button>
                     </div>
