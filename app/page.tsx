@@ -4,6 +4,7 @@ import { HeroSection } from "@/components/HeroSection";
 import { Plans } from "@/components/Plans";
 import { MarqueeCenter } from "@/components/MarqueeCenter";
 import { Scrollable } from "@/components/Scrollable";
+import { ScrollableCards } from "@/components/ScrollableCards";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Plans />
       <MarqueeCenter />
       <Scrollable />
+      <ScrollableCards />
     </main>
   );
 }
