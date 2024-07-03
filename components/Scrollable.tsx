@@ -12,7 +12,7 @@ import {
 
 export const Scrollable = () => {
   return (
-    <section className="bg-slate-200/50 pb-24">
+    <section className="bg-slate-100 pb-24">
       <div className="max-w-[1600px] mx-auto">
         <div className="flex flex-col w-full gap-y-12">
           <div className="flex justify-between">

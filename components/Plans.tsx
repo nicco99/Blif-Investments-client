@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Plans = () => {
   return (
-    <section className="bg-slate-200/50">
+    <section className="bg-slate-100">
       <div className="w-full py-24">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-6 gap-3">
