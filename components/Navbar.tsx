@@ -27,10 +27,10 @@ export const Navbar = () => {
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="/#"
+              href="/collections"
               className="font-bold hover:text-gray-600"
             >
-              Sizes
+              Collections
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
