@@ -1,52 +1,53 @@
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 
 export const Navbar = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <nav>
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/shop" className="font-bold hover:text-gray-600">
-            <NavigationMenuLink>
+            <NavigationMenuLink
+              href="/#"
+              className="font-bold hover:text-gray-600"
+            >
+              Sizes
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              href="/#"
+              className="font-bold hover:text-gray-600"
+            >
               Shop
             </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent text-base font-bold hover:text-gray-600">
-              Sizes
-            </NavigationMenuTrigger>
           </NavigationMenuItem>
           <NavigationMenuItem className="w-max">
-            <NavigationMenuTrigger className="bg-transparent text-base font-bold hover:text-gray-600">
+            <NavigationMenuLink
+              href="/#"
+              className="font-bold hover:text-gray-600"
+            >
               By Budget
-            </NavigationMenuTrigger>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent text-base font-bold hover:text-gray-600">
-              Collections
-            </NavigationMenuTrigger>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/collections" className="font-bold hover:text-gray-600">Collections</Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent text-base font-bold hover:text-gray-600">
-              Learn
-            </NavigationMenuTrigger>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/contact" className="font-bold hover:text-gray-600">Contact Us</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

@@ -2,6 +2,8 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
+import plan3 from "@/public/plan3.jpg";
+
 import {
   Carousel,
   CarouselContent,
@@ -12,27 +14,27 @@ import {
 
 export const Scrollable = () => {
   return (
-    <section className="bg-slate-100 pb-24">
-      <div className="max-w-[1600px] mx-auto">
-        <div className="flex flex-col w-full gap-y-12">
-          <div className="flex justify-between">
+    <section className="bg-slate-200 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+      <div className="px-3 sm:px-5 md:px-8 lg:px-12">
+        <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
+          <div className="flex flex-col lg:flex-row space-y-4 justify-between">
             <div className="flex flex-col">
-              <h2 className="text-4xl font-bold">
+              <h2 className="text-3xl lg:text-4xl font-bold">
                 Plans for every family size
               </h2>
-              <p className="mt-8 text-sm">
+              <p className="mt-5 lg:mt-8 text-sm sm:text-base">
                 We believe that every family deserves a home that perfectly fits
                 their unique needs and lifestyle
               </p>
             </div>
-            <div className="flex items-end">
+            <div className="flex lg:items-end">
               <Link
                 href="#"
-                className="flex group hover:underline hover:underline-offset-4 transition-all ease-in-out duration-300"
+                className="flex items-center gap-x-3 group text-sm sm:text-base hover:underline hover:underline-offset-4 transition-all ease-in-out duration-300"
               >
                 View all
-                <div className="bg-gray-300/70 ml-3 group-hover:bg-black rounded-full p-1 transition-all ease-in-out duration-300">
-                  <ChevronRight className="text-black group-hover:text-white h-4 w-4" />
+                <div className="bg-gray-300/70 group-hover:bg-black rounded-full p-1 transition-all ease-in-out duration-300">
+                  <ChevronRight className="text-black group-hover:text-white h-3 w-3" />
                 </div>
               </Link>
             </div>
@@ -40,19 +42,21 @@ export const Scrollable = () => {
           <Carousel className="w-full">
             <CarouselContent>
               {Array.from({ length: 7 }).map((_, index) => (
-                <CarouselItem key={index} className="basis-1/3">
+                <CarouselItem
+                  key={index}
+                  className="basis-3/4 sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"
+                >
                   <Link href="#">
-                    <div className="relative group rounded-lg w-[500px] h-[400px] overflow-hidden cursor-pointer before:absolute before:z-0 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
+                    <div className="relative group rounded-lg overflow-hidden cursor-pointer before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
                       <Image
-                        src="/plan2.jpg"
+                        src={plan3}
                         alt="Plan"
                         quality={30}
-                        fill
                         className="object-cover group-hover:scale-110 transition ease-in-out duration-700 -z-10"
                       />
                       <div className="absolute group-hover:translate-y-2 flex items-center justify-center w-full bottom-12 transition-all ease-in-out duration-700 z-20">
-                        <span className="text-white text-3xl font-bold">
-                          2 Bedroom House Plan
+                        <span className="text-white max-w-[80%] text-center text-lg sm:text-2xl xl:text-3xl font-bold">
+                          2 Bedroom House Plans
                         </span>
                       </div>
                     </div>
@@ -60,8 +64,8 @@ export const Scrollable = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-1 h-14 w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:left-[5%] md:left-[10%] transition-all ease-in-out duration-300" />
-            <CarouselNext className="right-1 h-14 w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black xs:right-[5%] md:right-[10%] transition-all ease-in-out duration-300" />
+            <CarouselPrevious className="hidden sm:flex md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[10%] transition-all ease-in-out duration-300" />
+            <CarouselNext className="hidden sm:flex md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[10%] transition-all ease-in-out duration-300" />
           </Carousel>
         </div>
       </div>

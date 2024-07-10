@@ -2,11 +2,11 @@ import Marquee from "react-fast-marquee";
 
 export const MarqueeComp = () => {
   return (
-    <div className="bg-black text-white py-3 md:py-4">
+    <div className="bg-black text-white py-2.5 md:py-3.5">
       <Marquee speed={50}>
         {Array.from({ length: 5 }).map((_, index) => (
-          <div key={index} className="flex items-center">
-            <p className="text-xs font-bold">
+          <div key={index} className="flex items-center grow-0">
+            <p className="text-[11px] md:text-sm font-bold">
               Unlock Savings: 30% Off for a Limited Time Applied Automatically
               at Checkout. Shop Now!
             </p>
