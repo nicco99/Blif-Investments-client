@@ -8,7 +8,7 @@ export const Logo = () => {
 
   return (
     <div
-      className="flex items-center cursor-pointer select-none"
+      className="flex items-center cursor-pointer w-max select-none justify-self-center lg:justify-self-start"
       onClick={() => router.push("/")}
     >
       <Image src="/logo2.webp" alt="Blif" width={64} height={64} />

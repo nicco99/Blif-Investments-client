@@ -9,38 +9,42 @@ import {
   MoveVertical,
 } from "lucide-react";
 
-import { Button } from "../ui/button";
 import plan1 from "@/public/plan1.jpg";
 import plan3 from "@/public/plan3.jpg";
+import { cn } from "@/lib/utils";
 
-export const PlanCard = () => {
+type Props = {
+  aspect?: boolean;
+};
+
+export const PlanCard = ({ aspect }: Props) => {
   return (
     <div className="flex flex-col group sm:w-full">
       <div className="relative">
-        <Link href="#">
-          <div className="relative group rounded-t-lg h-64 overflow-hidden cursor-pointer">
+        <Link href="/plan/1">
+          <div className={cn(
+            "relative group rounded-t-lg h-64 overflow-hidden cursor-pointer",
+            aspect && "aspect-[4/3]"
+          )}>
             <Image
               src={plan1}
               alt="Plan"
               fill
               quality={30}
-              className="absolute object-cover hover:opacity-0 transition ease-in-out duration-300"
+              className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-300"
             />
             <Image
               src={plan3}
               alt="Plan"
               fill
               quality={30}
-              className="absolute object-cover -z-10"
+              className="absolute object-cover z-[1]"
             />
           </div>
         </Link>
-        <Button className="hidden group-hover:block bg-black hover:bg-black/80 text-xs absolute bottom-4 right-4 rounded-3xl">
-          + Quick add
-        </Button>
       </div>
       <div className="flex flex-col bg-white rounded-b-lg w-full p-5 pt-4">
-        <Link href="#" className="font-bold text-sm">
+        <Link href="/plan/1" className="font-bold text-sm">
           Modern 5 Bedroom Double Storey House - ID 25506
         </Link>
         <p className="text-gray-600 text-sm mt-2 mb-3">From $76.90</p>
