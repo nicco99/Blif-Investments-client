@@ -35,18 +35,18 @@ export const Navbar = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
-              href="/#"
+              href="/about"
               className="font-bold hover:text-gray-600"
             >
-              Shop
+              About
             </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem className="w-max">
             <NavigationMenuLink
-              href="/#"
+              href="/contact-us"
               className="font-bold hover:text-gray-600"
             >
-              By Budget
+              Contact Us
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

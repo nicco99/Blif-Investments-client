@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import { CategoryCard } from "@/components/cards/CategoryCard";
 import {
   Pagination,
@@ -7,6 +9,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+
+export const metadata: Metadata = {
+  title: "Collections"
+}
 
 const PlansPage = () => {
   return (

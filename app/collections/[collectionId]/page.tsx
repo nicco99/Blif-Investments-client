@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { Settings2 } from "lucide-react";
 
@@ -9,6 +10,12 @@ import { FloatingFilter } from "@/components/FloatingFilter";
 type Props = {
   params: {
     collectionId: number;
+  };
+};
+
+export const generateMetadata = ({ params }: Props): Metadata => {
+  return {
+    title: `${params.collectionId}`,
   };
 };
 

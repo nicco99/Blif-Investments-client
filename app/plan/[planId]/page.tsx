@@ -1,6 +1,20 @@
+import { Metadata } from "next";
+import { SquareCheckBig } from "lucide-react";
+
 import { PlanCard } from "@/components/cards/PlanCard";
 import { ProductImages } from "@/components/product-images";
-import { SquareCheckBig } from "lucide-react";
+
+type Props = {
+  params: {
+    planId: number;
+  };
+};
+
+export const generateMetadata = ({ params }: Props): Metadata => {
+  return {
+    title: `${params.planId}`,
+  };
+};
 
 const features = [
   {

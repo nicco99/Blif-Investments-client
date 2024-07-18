@@ -1,4 +1,4 @@
-import { Search, ShoppingBasket } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { Navbar } from "./Navbar";
 import { Logo } from "./Logo";
@@ -22,7 +22,6 @@ export const Header = () => {
           {/* ICONS */}
           <div className="flex gap-x-3 lg:gap-x-6 justify-self-end">
             <Search />
-            <ShoppingBasket />
           </div>
         </div>
       </div>

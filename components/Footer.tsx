@@ -3,62 +3,14 @@ import Image from "next/image";
 
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 
 export const Footer = () => {
-  const payments = [
-    {
-      icon: "amazon",
-      title: "Amazon",
-    },
-    {
-      icon: "americanexpress",
-      title: "American Express",
-    },
-    {
-      icon: "applepay",
-      title: "Apple Pay",
-    },
-    {
-      icon: "dinersclub",
-      title: "Diners Club",
-    },
-    {
-      icon: "googlepay",
-      title: "Google Pay",
-    },
-    {
-      icon: "jcb",
-      title: "JCB",
-    },
-    {
-      icon: "mastercard",
-      title: "Mastercard",
-    },
-    {
-      icon: "paypal",
-      title: "Paypal",
-    },
-    {
-      icon: "venmo",
-      title: "Venmo",
-    },
-    {
-      icon: "visa",
-      title: "Visa",
-    },
-  ];
   return (
     <footer className="py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
         <div className="max-w-[1600px] w-full flex flex-col mx-auto">
           <div className="flex flex-col md:flex-row justify-evenly">
-            <div className="flex justify-evenly md:justify-between mt-8">
+            <div className="flex justify-evenly md:justify-between md:w-1/2 mt-8">
               <div className="flex flex-col pr-2">
                 <h3 className="font-bold text-sm">About</h3>
                 <p className="max-w-xs mt-4 text-sm text-gray-700">
@@ -125,7 +77,7 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col space-y-5 md:space-y-0 md:flex-row justify-between w-full mt-20">
+          <div className="flex space-y-5 md:space-y-0 justify-center w-full mt-20">
             <div className="flex flex-wrap gap-y-3 gap-x-10">
               <Link href="#">
                 <Image src="/facebook.svg" alt="" width={30} height={30} />
@@ -142,25 +94,6 @@ export const Footer = () => {
               <Link href="#">
                 <Image src="/whatsapp.svg" alt="" width={30} height={30} />
               </Link>
-            </div>
-            <div className="flex flex-wrap gap-5 md:gap-y-0">
-              {payments.map((payment, index) => (
-                <TooltipProvider key={index}>
-                  <Tooltip delayDuration={0}>
-                    <TooltipTrigger>
-                      <Image
-                        src={`/${payment.icon}.svg`}
-                        alt=""
-                        width={30}
-                        height={30}
-                      />
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="bg-black">
-                      <p className="text-white">{payment.title}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              ))}
             </div>
           </div>
         </div>
