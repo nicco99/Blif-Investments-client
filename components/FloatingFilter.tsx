@@ -1,8 +1,8 @@
 import { Settings2 } from "lucide-react";
+
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { PlanFilters } from "./PlanFilters";
-import { Separator } from "./ui/separator";
 
 export const FloatingFilter = () => {
   return (

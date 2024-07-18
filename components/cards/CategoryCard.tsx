@@ -5,7 +5,7 @@ import plan3 from "@/public/plan3.jpg";
 
 export const CategoryCard = () => {
   return (
-    <Link href="/collections/1">
+    <Link href="/collections/1" prefetch={false}>
       <div className="relative group rounded-lg overflow-hidden cursor-pointer before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
         <Image
           src={plan3}

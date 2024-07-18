@@ -21,7 +21,7 @@ export const PlanCard = ({ aspect }: Props) => {
   return (
     <div className="flex flex-col group sm:w-full">
       <div className="relative">
-        <Link href="/plan/1">
+        <Link href="/plan/1" prefetch={false}>
           <div className={cn(
             "relative group rounded-t-lg h-64 overflow-hidden cursor-pointer",
             aspect && "aspect-[4/3]"
@@ -30,6 +30,7 @@ export const PlanCard = ({ aspect }: Props) => {
               src={plan1}
               alt="Plan"
               fill
+              placeholder="blur"
               quality={30}
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-300"
             />

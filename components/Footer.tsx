@@ -14,10 +14,7 @@ export const Footer = () => {
               <div className="flex flex-col pr-2">
                 <h3 className="font-bold text-sm">About</h3>
                 <p className="max-w-xs mt-4 text-sm text-gray-700">
-                  Blif Investments provides affordable, African market-tailored
-                  designs. Our expert team works together to deliver top-tier
-                  designs with competitively priced, premium construction
-                  documents, and custom design options available.
+                At Blif Investments, we blend creativity with technical expertise to bring your architectural visions to life. Our team of seasoned architects, designers, and construction specialists is committed to delivering innovative house plans and top-tier construction management services tailored to your needs.
                 </p>
               </div>
               <div className="flex flex-col md:px-2">

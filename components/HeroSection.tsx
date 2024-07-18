@@ -40,7 +40,7 @@ export const HeroSection = () => {
               className="object-cover -z-10"
             />
             <span className="absolute z-20 text-white sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold max-w-60 sm:max-w-80 md:max-w-xl lg:max-w-2xl xl:max-w-4xl text-center">
-              Crafting Spaces You'll Love to Live In.
+              Crafting Spaces You&apos;ll Love to Live In.
             </span>
           </div>
         </CarouselItem>
