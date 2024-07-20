@@ -4,7 +4,7 @@ import Image from "next/image";
 import plan3 from "@/public/plan3.jpg";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About | Blif Investments",
 };
 
 const ContactUsPage = () => {

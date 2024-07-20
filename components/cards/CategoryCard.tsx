@@ -3,13 +3,10 @@ import Link from "next/link";
 
 import plan3 from "@/public/plan3.jpg";
 import { imageFromPlanToCategory } from "@/hooks/filters";
+import { Category } from "@/types";
 
 type Props = {
-  category: {
-    id: number;
-    name: string;
-    description: string;
-  };
+  category: Category;
 };
 
 export const CategoryCard = async ({ category }: Props) => {

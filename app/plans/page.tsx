@@ -1,5 +1,10 @@
 import { PlanCard } from "@/components/cards/PlanCard";
 import { getPlans } from "@/lib/api";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Plans | Blif Investments",
+};
 
 const PlansPage = async () => {
   const plans = await getPlans();
