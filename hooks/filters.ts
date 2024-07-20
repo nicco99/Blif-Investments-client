@@ -13,5 +13,5 @@ export const imageFromPlanToCategory = async (categoryId: number) => {
 
     const plan = plans.find((plan:any) => plan.category_id === Number(categoryId))
 
-    return plan?.images[0]?.image_path
+    return plan?.images[1]?.image_path
 }
