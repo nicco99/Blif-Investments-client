@@ -7,7 +7,7 @@ import { useState } from "react";
 export const Counter = () => {
   const [counter, setCounter] = useState(false);
   return (
-    <section className="bg-slate-200 px-5 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-white px-5 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       {/* @ts-ignore */}
       <ScrollTrigger
         onEnter={() => setCounter(true)}

@@ -29,6 +29,7 @@ export const MobileNav = () => {
           </SheetTitle>
           <SheetDescription className="flex flex-col gap-y-6">
             <Link href="/collections" className="text-gray-700 hover:text-black font-semibold">Collections</Link>
+            <Link href="/plans" className="text-gray-700 hover:text-black font-semibold">Plans</Link>
             <Link href="/about" className="text-gray-700 hover:text-black font-semibold">About</Link>
             <Link href="/contact-us" className="text-gray-700 hover:text-black font-semibold">Contact Us</Link>
           </SheetDescription>

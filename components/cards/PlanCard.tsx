@@ -9,33 +9,31 @@ import {
   MoveVertical,
 } from "lucide-react";
 
-import plan1 from "@/public/plan1.jpg";
-import plan3 from "@/public/plan3.jpg";
 import { cn } from "@/lib/utils";
 
 type Props = {
   aspect?: boolean;
+  plan: any
 };
 
-export const PlanCard = ({ aspect }: Props) => {
+export const PlanCard = ({ aspect, plan }: Props) => {
   return (
-    <div className="flex flex-col group sm:w-full">
+    <div className="flex flex-col group sm:w-full shadow-i">
       <div className="relative">
-        <Link href="/plan/1" prefetch={false}>
+        <Link href={`/plans/${plan.id}`} prefetch={false}>
           <div className={cn(
             "relative group rounded-t-lg h-64 overflow-hidden cursor-pointer",
             aspect && "aspect-[4/3]"
           )}>
             <Image
-              src={plan1}
+              src={`${process.env.API_URL!}/${plan.images[0]?.image_path}`}
               alt="Plan"
               fill
-              placeholder="blur"
               quality={30}
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-300"
             />
             <Image
-              src={plan3}
+              src={`${process.env.API_URL!}/${plan.images[2]?.image_path}`}
               alt="Plan"
               fill
               quality={30}
@@ -44,35 +42,35 @@ export const PlanCard = ({ aspect }: Props) => {
           </div>
         </Link>
       </div>
-      <div className="flex flex-col bg-white rounded-b-lg w-full p-5 pt-4">
+      <div className="flex flex-col rounded-b-lg w-full p-5 pt-4">
         <Link href="/plan/1" className="font-bold text-sm">
-          Modern 5 Bedroom Double Storey House - ID 25506
+          {plan.plan_name}
         </Link>
-        <p className="text-gray-600 text-sm mt-2 mb-3">From $76.90</p>
-        <div className="grid grid-cols-3 gap-y-4 justify-items-center">
+        <p className="text-gray-600 text-sm mt-2 mb-3">From ${plan.price}</p>
+        <div className="grid grid-cols-3 gap-y-4 justify-items-end">
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
             <HousePlus className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">2 Floors</span>
+            <span className="text-xs font-medium mt-2">{plan.floors} Floors</span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
             <Bed className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">5 Bedrooms</span>
+            <span className="text-xs font-medium mt-2">{plan.no_of_bedrooms} Bedrooms</span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center">
             <Bath className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">5 Bathrooms</span>
+            <span className="text-xs font-medium mt-2">{plan.no_of_bathrooms} Bathrooms</span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
             <MoveVertical className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">17.5 m</span>
+            <span className="text-xs font-medium mt-2">{plan.plan_height} m</span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
             <MoveHorizontal className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">14.1 m</span>
+            <span className="text-xs font-medium mt-2">{plan.plan_length} m</span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center">
             <MapPinned className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">427 Area</span>
+            <span className="text-xs font-medium mt-2">{plan.plan_size} m<sup>2</sup></span>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import {
 
 export const PlanFilters = () => {
   return (
-    <Accordion type="multiple" className="w-full sticky top-[100px]">
+    <Accordion type="multiple" className="w-full">
       <AccordionItem value="sort" className="lg:hidden border-b-0 border-gray-400">
         <AccordionTrigger className="font-bold w-full text-start">
           Sort

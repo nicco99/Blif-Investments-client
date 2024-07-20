@@ -12,7 +12,7 @@ export const Logo = () => {
       onClick={() => router.push("/")}
     >
       <Image src="/logo2.webp" alt="Blif" width={64} height={64} />
-      <p className="text-xs sm:text-base lg:text-lg font-bold text-main">Blif Investments</p>
+      <p className="text-sm sm:text-lg lg:text-xl font-bold text-main">Blif Investments</p>
     </div>
   );
 };

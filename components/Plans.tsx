@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import plan3 from "@/public/plan3.jpg"
 
-export const Plans = () => {
+export const Plans = async () => {
   return (
-    <section className="bg-slate-200">
+    <section className="bg-white">
       <div className="w-full px-5 sm:px-8 md:px-10 lg:px-12 py-8 md:py-10 lg:py-12 xl:py-16">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex -mx-5 sm:-mx-8 md:-mx-10 px-3 sm:px-5 md:px-8 lg:mx-0 lg:px-0 gap-x-3 max-[1023px]:overflow-x-scroll no-scrollbar lg:grid lg:grid-cols-6 lg:gap-x-6">

@@ -35,6 +35,14 @@ export const Navbar = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuLink
+              href="/plans"
+              className="font-bold hover:text-gray-600"
+            >
+              Plans
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
               href="/about"
               className="font-bold hover:text-gray-600"
             >

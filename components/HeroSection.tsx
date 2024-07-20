@@ -25,7 +25,7 @@ export const HeroSection = () => {
               placeholder="blur"
               className="object-cover -z-10"
             />
-            <span className="absolute z-20 text-white sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold max-w-60 sm:max-w-80 md:max-w-xl lg:max-w-2xl xl:max-w-4xl text-center">
+            <span className="absolute z-20 animate-slide-up text-white sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold max-w-60 sm:max-w-80 md:max-w-xl lg:max-w-2xl xl:max-w-4xl text-center">
               Discover Your Dream Home with Our Expertly Designed House Plans.
             </span>
           </div>

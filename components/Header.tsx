@@ -6,7 +6,7 @@ import { MobileNav } from "./MobileNav";
 
 export const Header = () => {
   return (
-    <header className="z-50 sticky top-0 w-full bg-slate-200">
+    <header className="bg-[#f3f3f3] z-40 sticky top-0 w-full">
       <div className="px-5 md:px-8 lg:px-12 md:py-4">
         <div className="grid grid-cols-3 items-center max-w-[1600px] mx-auto">
           {/* MOBILE NAV */}

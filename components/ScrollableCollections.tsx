@@ -8,11 +8,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { PlanCard } from "./cards/PlanCard";
+import { CategoryCard } from "./cards/CategoryCard";
+import { getCategories } from "@/lib/api";
 
-export const ScrollableCards = () => {
+export const ScrollableCollections = async () => {
+  const categories = await getCategories();
+
   return (
-    <section className="bg-slate-200 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-white pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">
@@ -27,7 +30,7 @@ export const ScrollableCards = () => {
             </div>
             <div className="flex lg:items-end">
               <Link
-                href="#"
+                href="/collections"
                 className="flex items-center gap-x-3 group text-sm sm:text-base hover:underline hover:underline-offset-4 transition-all ease-in-out duration-300"
               >
                 View all
@@ -38,18 +41,24 @@ export const ScrollableCards = () => {
             </div>
           </div>
           <Carousel className="w-full">
-            <CarouselContent className="flex flex-col space-y-5 sm:space-y-0 sm:flex-row">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem
-                  key={index}
-                  className="sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"
-                >
-                  <PlanCard key={index} />
-                </CarouselItem>
-              ))}
+            <CarouselContent>
+              {categories.map(
+                (category: {
+                  id: number;
+                  name: string;
+                  description: string;
+                }) => (
+                  <CarouselItem
+                    key={category.id}
+                    className="basis-3/4 sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"
+                  >
+                    <CategoryCard category={category} />
+                  </CarouselItem>
+                )
+              )}
             </CarouselContent>
-            <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[10%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
-            <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[10%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
+            <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[10%] transition-all ease-in-out duration-300" />
+            <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[10%] transition-all ease-in-out duration-300" />
           </Carousel>
         </div>
       </div>
