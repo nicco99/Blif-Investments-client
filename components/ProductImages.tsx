@@ -5,17 +5,20 @@ import { useState } from "react";
 import { ZoomIn } from "lucide-react";
 
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
+import { ImageProp } from "@/types";
 
 type Props = {
-  images: [
-    {
-      id: number;
-      image_path: string;
-    }
-  ];
+  images: ImageProp[];
 };
 
-const url = "http://13.37.100.57:5001"
+const url = "http://13.37.100.57:5001";
 
 export const ProductImages = ({ images }: Props) => {
   const [index, setIndex] = useState(0);
@@ -47,22 +50,32 @@ export const ProductImages = ({ images }: Props) => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="grid grid-cols-4 gap-4 p-3 md:p- lg:p-0 lg:mt-8">
-        {images.map((image: any, index: number) => (
-          <div
-            key={image.id}
-            className="aspect-square md:aspect-[4/3] relative cursor-pointer"
-            onClick={() => setIndex(index)}
-          >
-            <Image
-              src={`${url}/${image.image_path}`}
-              alt=""
-              fill
-              sizes="30vw"
-              className="object-cover rounded-lg lg:rounded-xl"
-            />
-          </div>
-        ))}
+      <div className="flex overflow-x-scroll no-scrollbar gap-4 p-3 lg:p-0 lg:mt-8">
+        <Carousel className="w-full">
+          <CarouselContent className="">
+            {images.map((image: any, index: number) => (
+              <CarouselItem
+                className="basis-28 sm:basis-36 lg:basis-28 xl:basis-36"
+                key={image.id}
+              >
+                <div
+                  className="aspect-square w-full relative cursor-pointer"
+                  onClick={() => setIndex(index)}
+                >
+                  <Image
+                    src={`${url}/${image.image_path}`}
+                    alt=""
+                    fill
+                    sizes="30vw"
+                    className="object-cover rounded-lg lg:rounded-xl"
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[5%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
+          <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[5%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
+        </Carousel>
       </div>
     </div>
   );

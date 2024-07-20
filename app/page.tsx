@@ -1,5 +1,4 @@
 import { HeroSection } from "@/components/HeroSection";
-import { Plans } from "@/components/Plans";
 import { MarqueeCenter } from "@/components/MarqueeCenter";
 import { ScrollableCollections } from "@/components/ScrollableCollections";
 import { ScrollablePlans } from "@/components/ScrollablePlans";
@@ -10,7 +9,6 @@ export default function Home() {
   return (
     <main className="w-full">
       <HeroSection />
-      <Plans />
       <MarqueeCenter />
       <ScrollableCollections />
       <ScrollablePlans />

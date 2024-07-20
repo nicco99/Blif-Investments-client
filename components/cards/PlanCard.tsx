@@ -10,10 +10,11 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Plan } from "@/types";
 
 type Props = {
   aspect?: boolean;
-  plan: any
+  plan: Plan
 };
 
 export const PlanCard = ({ aspect, plan }: Props) => {

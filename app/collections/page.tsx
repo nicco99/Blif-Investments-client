@@ -12,7 +12,7 @@ import {
 import { getCategories } from "@/lib/api";
 
 export const metadata: Metadata = {
-  title: "Collections",
+  title: "Collections | Blif Investments",
 };
 
 const PlansPage = async () => {
