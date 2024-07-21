@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 const ContactUsPage = () => {
   return (
-    <section className="bg-white8 md:py-10 lg:py-12 xl:py-16">
+    <section className="bg-[#f3f3f3] md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-5 text-center">
@@ -22,7 +22,7 @@ const ContactUsPage = () => {
                 Phone:{" "}
                 <Link
                   href="tel:+254712345678"
-                  className="underline underline-offset-4 hover:no-underline transition-all ease-in-out duration-300"
+                  className="underline underline-offset-4 hover:no-underline transition-all ease-in-out duration-700"
                 >
                   +254712345678
                 </Link>
@@ -31,7 +31,7 @@ const ContactUsPage = () => {
                 Email:{" "}
                 <Link
                   href="mailto:blifinvestment@mail.com"
-                  className="underline underline-offset-4 hover:no-underline transition-all ease-in-out duration-300"
+                  className="underline underline-offset-4 hover:no-underline transition-all ease-in-out duration-700"
                 >
                   blifinvestment@mail.com
                 </Link>

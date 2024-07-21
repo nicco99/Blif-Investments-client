@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const ContactUsPage = () => {
   return (
-    <section className="bg-white pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="">
         <div className="flex flex-col w-full gap-y-12">
           <div className="relative flex flex-col justify-center items-center h-[22rem] overflow-hidden before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-10 before:content-['']">

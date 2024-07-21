@@ -1,7 +1,7 @@
 import { cache } from "react";
 import axios from "axios";
 
-export const URL = process.env.API_URL!;
+export const URL: string = process.env.API_URL!;
 
 export const getPlans = cache(async () => {
   try {
@@ -25,12 +25,12 @@ export const getPlanWithId = cache(async (planId: number) => {
 
 export const getCategories = cache(async () => {
   try {
-    const data = await axios.get(`${URL}/categories`).then((res) => res.data)
-    return data.categories
+    const data = await axios.get(`${URL}/categories`).then((res) => res.data);
+    return data.categories;
   } catch (error) {
-    console.log("[Get Categories Error]", error)
+    console.log("[Get Categories Error]", error);
   }
-})
+});
 
 export const getCategoryWithId = cache(async (categoryId: number) => {
   try {
