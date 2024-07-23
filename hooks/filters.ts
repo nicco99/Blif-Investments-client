@@ -37,3 +37,26 @@ export const filterPlanFromCategory = async (
 export const sliceArray = (array: [], items: number) => {
   return array.slice(0, items);
 };
+
+export const formattedPrice = (number: number) => {
+  return number
+    .toLocaleString("en", { style: "currency", currency: "KES" })
+    .replace(/(\.\d{2})$/, "");
+};
+
+export const formattedPrice2 = (amount: string) => {
+  let numberStr = amount.replace(/KES\s|,/g, "");
+  let number = parseFloat(numberStr);
+  let newNumber;
+  switch (true) {
+    case number >= 1000000:
+      newNumber = (number / 1000000).toFixed(2) + "M";
+      break;
+    case number >= 100000:
+      newNumber = (number / 1000).toFixed() + "K";
+      break;
+    default:
+      return amount;
+  }
+  return "KES " + newNumber;
+};

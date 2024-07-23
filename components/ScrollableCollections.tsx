@@ -11,12 +11,14 @@ import {
 import { CategoryCard } from "./cards/CategoryCard";
 import { getCategories } from "@/lib/api";
 import { Category } from "@/types";
+import { sliceArray } from "@/hooks/filters";
 
 export const ScrollableCollections = async () => {
   const categories = await getCategories();
+  const slicedCategories = sliceArray(categories, 8);
 
   return (
-    <section className="bg-[#f3f3f3] pt-5 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-[#f3f3f3] pt-5 sm:pt-0 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">
@@ -42,8 +44,8 @@ export const ScrollableCollections = async () => {
             </div>
           </div>
           <Carousel className="w-full">
-            <CarouselContent className="lg:pt-2 lg:pb-12">
-              {categories.map((category: Category) => (
+            <CarouselContent>
+              {slicedCategories.map((category: Category) => (
                 <CarouselItem
                   key={category.id}
                   className="basis-3/4 sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"

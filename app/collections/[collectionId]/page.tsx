@@ -60,7 +60,9 @@ const CollectionIdPage = async ({ params }: Props) => {
             </div>
             <div className="w-full flex flex-col lg:grid grid-cols-4 lg:gap-x-12">
               <p className="lg:hidden text-center text-sm md:text-base">
-                14 products
+                {`${filteredPlans.length} product${
+                  filteredPlans.length === 1 ? "" : "s"
+                }`}
               </p>
               <div className="hidden lg:block items-start col-span-1">
                 <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[95px] w-full py-12">
@@ -73,7 +75,7 @@ const CollectionIdPage = async ({ params }: Props) => {
               </div>
               <div className="flex flex-col col-span-3">
                 <PlanSort />
-                <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 lg:px-3">
+                <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
                   {filteredPlans.map((plan: Plan) => (
                     <PlanCard key={plan.id} plan={plan} />
                   ))}

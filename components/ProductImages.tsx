@@ -4,7 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { ZoomIn } from "lucide-react";
 
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "./ui/dialog";
 import {
   Carousel,
   CarouselContent,
@@ -13,25 +17,36 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { ImageProp } from "@/types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   images: ImageProp[];
-  urlPath: string
+  urlPath: string;
 };
 
 export const ProductImages = ({ images, urlPath }: Props) => {
   const [index, setIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const imagesArray = images.reverse()
+  const imageParam = searchParams.get("i");
+
+  const imageOnclick = (idx: number) => {
+    setIndex(idx);
+    router.push(`${pathname}?i=${idx}`);
+  };
+
+  const imageUrl = `${urlPath}/${images[Number(imageParam)].image_path}`
 
   return (
     <div>
       <div className="aspect-[4/3] md:aspect-video lg:aspect-[4/3] relative">
         <Image
-          src={`${urlPath}/${imagesArray[index].image_path}`}
+          src={imageUrl}
           alt=""
           fill
-          sizes="50vw"
+          sizes="(max-width: 1023px) 100vw, 50vw"
           className="object-cover lg:rounded-xl"
         />
         <Dialog>
@@ -42,7 +57,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
           </DialogTrigger>
           <DialogContent className="bg-[#f3f3f3] h-full">
             <Image
-              src={`${urlPath}/${imagesArray[index].image_path}`}
+              src={imageUrl}
               alt=""
               fill
               quality={100}
@@ -54,15 +69,15 @@ export const ProductImages = ({ images, urlPath }: Props) => {
       </div>
       <div className="flex overflow-x-scroll no-scrollbar gap-4 p-3 lg:p-0 lg:mt-8">
         <Carousel className="w-full">
-          <CarouselContent className="">
-            {imagesArray.map((image: ImageProp, index: number) => (
+          <CarouselContent>
+            {images.map((image: ImageProp, idx: number) => (
               <CarouselItem
                 className="basis-28 sm:basis-36 lg:basis-28 xl:basis-36"
                 key={image.id}
               >
                 <div
                   className="aspect-square w-full relative cursor-pointer"
-                  onClick={() => setIndex(index)}
+                  onClick={() => imageOnclick(idx)}
                 >
                   <Image
                     src={`${urlPath}/${image.image_path}`}

@@ -69,7 +69,7 @@ const config = {
           to: { height: "0" },
         },
         "slide-up": {
-          from: { transform: "translateY(100px)" },
+          from: { transform: "translateY(50px)" },
           to: { transform: "translateY(0px)" },
         },
         "slide-left": {
