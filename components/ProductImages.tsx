@@ -34,7 +34,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
 
   const imageOnclick = (idx: number) => {
     setIndex(idx);
-    router.push(`${pathname}?i=${idx}`);
+    router.replace(`${pathname}?i=${idx}`);
   };
 
   const imageUrl = `${urlPath}/${images[Number(imageParam)].image_path}`
@@ -46,7 +46,8 @@ export const ProductImages = ({ images, urlPath }: Props) => {
           src={imageUrl}
           alt=""
           fill
-          sizes="(max-width: 1023px) 100vw, 50vw"
+          priority
+          sizes="(max-width: 1023px) 100vw, 40vw"
           className="object-cover lg:rounded-xl"
         />
         <Dialog>

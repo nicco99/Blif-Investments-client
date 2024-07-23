@@ -60,3 +60,33 @@ export const formattedPrice2 = (amount: string) => {
   }
   return "KES " + newNumber;
 };
+
+export const handleSort = (plans: Plan[], value: string) => {
+  switch (value) {
+    case "name-asc":
+      plans.toSorted((a, b) => {
+        if (a.plan_name < b.plan_name) {
+          return -1;
+        }
+        if (a.plan_name > b.plan_name) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    case "name-desc":
+      plans.toSorted((a, b) => {
+        if (a.plan_name > b.plan_name) {
+          return -1;
+        }
+        if (a.plan_name < b.plan_name) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    default:
+      plans
+      break;
+  }
+};

@@ -1,4 +1,8 @@
+"use client"
+
+import { useRef } from "react";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay"
 
 import plan1 from "@/public/plan1.jpg"
 import plan2 from "@/public/plan2.jpg"
@@ -12,9 +16,14 @@ import {
 } from "./ui/carousel";
 
 export const HeroSection = () => {
+  const plugin = useRef(
+    Autoplay({ delay: 7000 })
+  )
+
   return (
-    <Carousel className="w-full select-none">
-      <CarouselContent className="transition-all ease-linear">
+    // @ts-ignore
+    <Carousel plugins={[plugin.current]} className="w-full select-none">
+      <CarouselContent className="transition-all ease-linear duration-300">
         <CarouselItem>
           <div className="relative w-full flex items-center justify-center h-[180px] sm:h-56 md:h-[280px] lg:h-[368px] xl:h-[680px] before:absolute before:z-0 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
             <Image

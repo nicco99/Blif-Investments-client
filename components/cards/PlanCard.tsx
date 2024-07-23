@@ -20,7 +20,7 @@ type Props = {
 
 export const PlanCard = ({ aspect, plan }: Props) => {
   const planPrice = formattedPrice(plan.price);
-  const reversedImages = plan.images.toReversed()
+  // const reversedImages = plan.images.toReversed()
   return (
     <div className="flex flex-col group lg:hover:drop-shadow-xl lg:hover:-translate-y-2 transition-all ease-in-out duration-500">
       <div className="relative">

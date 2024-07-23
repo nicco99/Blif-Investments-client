@@ -120,8 +120,8 @@ const ContactUsPage = () => {
               </div>
               <hr className="h-0.5 bg-gray-300 my-10" />
             </div>
-            <div className="max-w-lg mx-auto w-full bg-slate-200 py-2">
-              <p className="text-center text-xl">
+            <div className="max-w-lg mx-auto w-full py-2 lg:pt-6">
+              <p className="text-center text-xl lg:text-2xl">
                 Explore our portfolio and discover how we can transform your
                 space with innovative design and expert management.
               </p>

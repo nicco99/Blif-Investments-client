@@ -3,9 +3,12 @@ import { SquareCheckBig } from "lucide-react";
 import { getPlanWithId, URL } from "@/lib/api";
 import { PlanCard } from "@/components/cards/PlanCard";
 import { ProductImages } from "@/components/ProductImages";
-import { filterPlanFromCategory, formattedPrice, formattedPrice2 } from "@/hooks/filters";
-
 import { Feature, Plan } from "@/types";
+import {
+  filterPlanFromCategory,
+  formattedPrice,
+  formattedPrice2,
+} from "@/hooks/filters";
 
 type Props = {
   params: {
