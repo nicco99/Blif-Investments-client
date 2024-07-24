@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import plan3 from "@/public/plan3.jpg";
+import grid3 from "@/public/grid3.jpg";
+import grid4 from "@/public/grid4.jpg";
+import grid9 from "@/public/grid9.jpg";
 
 export const metadata: Metadata = {
   title: "About | Blif Investments",
@@ -9,14 +11,19 @@ export const metadata: Metadata = {
 
 const ContactUsPage = () => {
   return (
-    <section className="bg-white pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="">
-        <div className="flex flex-col w-full gap-y-12">
-          <div className="relative flex flex-col justify-center items-center h-[22rem] overflow-hidden before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-10 before:content-['']">
-            <Image src={plan3} alt="" className="object-cover h-full" />
+        <div className="flex flex-col w-full gap-y-5 sm:gap-y-8 md:gap-y-10 lg:gap-y-12">
+          <div className="relative flex flex-col justify-center items-center max-h-[22rem] overflow-hidden before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
+            <Image
+              src={grid9}
+              alt=""
+              sizes="100vw"
+              className="object-cover h-full"
+            />
           </div>
           <div className="px-5 md:px-8 lg:px-12 max-w-[1600px] mx-auto">
-            <div className="flex flex-col gap-y-4 md:gap-y-6 text-center md:max-w-xl mx-auto mb-12">
+            <div className="flex flex-col gap-y-4 md:gap-y-6 text-center md:max-w-xl mx-auto">
               <span className="text-2xl font-bold">About Us</span>
               <p className="sm:text-lg">
                 At Blif Investments, we blend creativity with technical
@@ -26,10 +33,16 @@ const ContactUsPage = () => {
                 construction management services tailored to your needs.
               </p>
             </div>
-            <div className="flex flex-col gap-y-12 lg:gap-y-0">
+            <hr className="h-0.5 bg-gray-300 my-10 lg:my-12" />
+            <div className="flex flex-col lg:gap-y-0">
               <div className="flex flex-col gap-y-12 lg:flex-row">
                 <div className="w-full mx-auto lg:w-1/2">
-                  <Image src={plan3} alt="" className="rounded-xl lg:rounded-3xl lg:rounded-br-none"/>
+                  <Image
+                    src={grid3}
+                    alt=""
+                    sizes="50vw"
+                    className="rounded-xl lg:rounded-3xl lg:rounded-br-none"
+                  />
                 </div>
                 <div className="flex flex-col justify-center gap-y-4 lg:gap-y-6 lg:w-1/2 mx-auto text-center">
                   <h3 className="font-bold text-2xl">Our Services</h3>
@@ -69,9 +82,15 @@ const ContactUsPage = () => {
                   </ul>
                 </div>
               </div>
+              <hr className="lg:hidden h-0.5 bg-gray-300 my-10" />
               <div className="flex flex-col gap-y-12 lg:flex-row">
                 <div className="w-full mx-auto lg:w-1/2 lg:order-last">
-                  <Image src={plan3} alt="" className="rounded-xl lg:rounded-3xl lg:rounded-tl-none" />
+                  <Image
+                    src={grid4}
+                    alt=""
+                    sizes="50vw"
+                    className="rounded-xl lg:rounded-3xl lg:rounded-tl-none"
+                  />
                 </div>
                 <div className="flex flex-col justify-center gap-y-4 lg:gap-y-6 lg:w-1/2 mx-auto text-center">
                   <h3 className="font-bold text-2xl">Why Choose Us?</h3>
@@ -99,9 +118,10 @@ const ContactUsPage = () => {
                   </ul>
                 </div>
               </div>
+              <hr className="h-0.5 bg-gray-300 my-10" />
             </div>
-            <div className="mt-12 max-w-lg mx-auto w-full bg-slate-200 py-2">
-              <p className="text-center text-xl">
+            <div className="max-w-lg mx-auto w-full py-2 lg:pt-6">
+              <p className="text-center text-xl lg:text-2xl">
                 Explore our portfolio and discover how we can transform your
                 space with innovative design and expert management.
               </p>

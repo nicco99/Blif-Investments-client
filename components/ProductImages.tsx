@@ -4,7 +4,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { ZoomIn } from "lucide-react";
 
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "./ui/dialog";
 import {
   Carousel,
   CarouselContent,
@@ -13,23 +17,37 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { ImageProp } from "@/types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   images: ImageProp[];
+  urlPath: string;
 };
 
-const url = "http://13.37.100.57:5001";
-
-export const ProductImages = ({ images }: Props) => {
+export const ProductImages = ({ images, urlPath }: Props) => {
   const [index, setIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const imageParam = searchParams.get("i");
+
+  const imageOnclick = (idx: number) => {
+    setIndex(idx);
+    router.replace(`${pathname}?i=${idx}`);
+  };
+
+  const imageUrl = `${urlPath}/${images[Number(imageParam)].image_path}`
+
   return (
     <div>
       <div className="aspect-[4/3] md:aspect-video lg:aspect-[4/3] relative">
         <Image
-          src={`${url}/${images[index].image_path}`}
+          src={imageUrl}
           alt=""
           fill
-          sizes="50vw"
+          priority
+          sizes="(max-width: 1023px) 100vw, 40vw"
           className="object-cover lg:rounded-xl"
         />
         <Dialog>
@@ -38,9 +56,9 @@ export const ProductImages = ({ images }: Props) => {
               <ZoomIn className="h-5 w-5" />
             </div>
           </DialogTrigger>
-          <DialogContent className="bg-white h-full">
+          <DialogContent className="bg-[#f3f3f3] h-full">
             <Image
-              src={`${url}/${images[index].image_path}`}
+              src={imageUrl}
               alt=""
               fill
               quality={100}
@@ -52,18 +70,18 @@ export const ProductImages = ({ images }: Props) => {
       </div>
       <div className="flex overflow-x-scroll no-scrollbar gap-4 p-3 lg:p-0 lg:mt-8">
         <Carousel className="w-full">
-          <CarouselContent className="">
-            {images.map((image: any, index: number) => (
+          <CarouselContent>
+            {images.map((image: ImageProp, idx: number) => (
               <CarouselItem
                 className="basis-28 sm:basis-36 lg:basis-28 xl:basis-36"
                 key={image.id}
               >
                 <div
                   className="aspect-square w-full relative cursor-pointer"
-                  onClick={() => setIndex(index)}
+                  onClick={() => imageOnclick(idx)}
                 >
                   <Image
-                    src={`${url}/${image.image_path}`}
+                    src={`${urlPath}/${image.image_path}`}
                     alt=""
                     fill
                     sizes="30vw"
@@ -73,8 +91,8 @@ export const ProductImages = ({ images }: Props) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[5%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
-          <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[5%] transition-all ease-in-out duration-300 ring-1 ring-gray-500" />
+          <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[5%] transition-all ease-in-out duration-700 ring-1 ring-gray-500" />
+          <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[5%] transition-all ease-in-out duration-700 ring-1 ring-gray-500" />
         </Carousel>
       </div>
     </div>

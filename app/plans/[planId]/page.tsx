@@ -1,11 +1,14 @@
 import { SquareCheckBig } from "lucide-react";
 
-import { getPlanWithId } from "@/lib/api";
+import { getPlanWithId, URL } from "@/lib/api";
 import { PlanCard } from "@/components/cards/PlanCard";
 import { ProductImages } from "@/components/ProductImages";
-import { filterPlansWithCategoryId } from "@/hooks/filters";
-
 import { Feature, Plan } from "@/types";
+import {
+  filterPlanFromCategory,
+  formattedPrice,
+  formattedPrice2,
+} from "@/hooks/filters";
 
 type Props = {
   params: {
@@ -15,7 +18,8 @@ type Props = {
 
 const PlanIdPage = async ({ params }: Props) => {
   const plan: Plan = await getPlanWithId(params.planId);
-  const filteredPlans: Plan[] = await filterPlansWithCategoryId(
+  const filteredPlans: Plan[] = await filterPlanFromCategory(
+    plan.id,
     plan.category_id
   );
 
@@ -24,14 +28,14 @@ const PlanIdPage = async ({ params }: Props) => {
       <title className="capitalize">
         {plan.plan_name + " | Blif Investments"}
       </title>
-      <section className="bg-white pb-8 md:pb-10 lg:py-12">
+      <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-12">
         <div className="lg:px-12">
           <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
-            <div className="bg-white lg:p-12 lg:rounded-3xl">
+            <div className="lg:p-12 lg:rounded-3xl">
               <div className="relative flex flex-col lg:flex-row gap-y-5 md:gap-y-8 lg:gap-y-0 lg:gap-x-12 xl:gap-x-24">
                 {/* IMAGE */}
                 <div className="w-full lg:w-1/2 lg:sticky top-[143px] h-max">
-                  <ProductImages images={plan.images} />
+                  <ProductImages images={plan.images} urlPath={URL} />
                 </div>
                 {/* TEXTS */}
                 <div className="w-full px-3 sm:px-5 md:px-8 lg:px-0 lg:w-1/2 flex flex-col gap-y-6 xl:gap-y-10">
@@ -91,7 +95,7 @@ const PlanIdPage = async ({ params }: Props) => {
                         Size
                       </span>
                       <span className="text-base text-gray-500 mt-2">
-                        {plan.plan_size} m<sup>2</sup>
+                        {plan.plan_size} m<sup className="text-xs">2</sup>
                       </span>
                     </div>
                     <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
@@ -99,15 +103,15 @@ const PlanIdPage = async ({ params }: Props) => {
                         Price
                       </span>
                       <span className="text-base text-gray-500 mt-2">
-                        ${plan.price}
+                        {formattedPrice2(formattedPrice(plan.price))}
                       </span>
                     </div>
                     <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
                       <span className="font-bold text-center text-base sm:text-lg">
-                        Price / m<sup>2</sup>
+                        Price / m<sup className="text-xs">2</sup>
                       </span>
                       <span className="text-base text-gray-500 mt-2">
-                        ${plan.price_per_sqm}
+                        {formattedPrice2(formattedPrice(plan.price_per_sqm))}
                       </span>
                     </div>
                     <div className="col-span-1 flex w-full flex-col items-center justify-center">
@@ -115,7 +119,7 @@ const PlanIdPage = async ({ params }: Props) => {
                         Plinth Area
                       </span>
                       <span className="text-base text-gray-500 mt-2">
-                        {plan.plinth_area} m<sup>2</sup>
+                        {plan.plinth_area} m<sup className="text-xs">2</sup>
                       </span>
                     </div>
                   </div>
@@ -142,8 +146,8 @@ const PlanIdPage = async ({ params }: Props) => {
               <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-5">
                 You may also like
               </h1>
-              <div className="flex overflow-x-scroll no-scrollbar gap-x-3">
-                {filteredPlans.map((plan: any) => (
+              <div className="flex overflow-x-scroll no-scrollbar gap-x-3 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
+                {filteredPlans.map((plan: Plan) => (
                   <PlanCard key={plan.id} aspect plan={plan} />
                 ))}
               </div>

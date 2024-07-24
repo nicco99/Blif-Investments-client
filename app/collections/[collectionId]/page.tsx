@@ -11,6 +11,7 @@ import {
   imageFromPlanToCategory,
 } from "@/hooks/filters";
 import { PlanSort } from "@/components/PlanSort";
+import { Plan } from "@/types";
 
 type Props = {
   params: {
@@ -34,7 +35,7 @@ const CollectionIdPage = async ({ params }: Props) => {
       <title className="capitalize">
         {category.name + " | Blif Investments"}
       </title>
-      <section className="bg-white flex flex-col justify-center items-center py-8 md:py-10 lg:py-12">
+      <section className="bg-[#f3f3f3] flex flex-col justify-center items-center py-8 md:py-10 lg:py-12">
         <div className="px-5 md:px-8 lg:px-12 mb-5 lg:mb-0 w-full">
           <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
             <div className="relative flex w-full justify-center items-center h-[23.5rem] md:h-[25rem] xl:h-[28rem] overflow-hidden rounded-3xl before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
@@ -59,7 +60,9 @@ const CollectionIdPage = async ({ params }: Props) => {
             </div>
             <div className="w-full flex flex-col lg:grid grid-cols-4 lg:gap-x-12">
               <p className="lg:hidden text-center text-sm md:text-base">
-                14 products
+                {`${filteredPlans.length} product${
+                  filteredPlans.length === 1 ? "" : "s"
+                }`}
               </p>
               <div className="hidden lg:block items-start col-span-1">
                 <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[95px] w-full py-12">
@@ -72,8 +75,8 @@ const CollectionIdPage = async ({ params }: Props) => {
               </div>
               <div className="flex flex-col col-span-3">
                 <PlanSort />
-                <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 lg:px-3">
-                  {filteredPlans.map((plan: any) => (
+                <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
+                  {filteredPlans.map((plan: Plan) => (
                     <PlanCard key={plan.id} plan={plan} />
                   ))}
                 </div>

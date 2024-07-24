@@ -69,14 +69,18 @@ const config = {
           to: { height: "0" },
         },
         "slide-up": {
-          from: { transform: "translateY(100px)" },
+          from: { transform: "translateY(50px)" },
           to: { transform: "translateY(0px)" },
+        },
+        "slide-left": {
+          to: { left: "-1000px" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-up": "slide-up 1s ease-in"
+        "slide-up": "slide-up 1s ease-in",
+        "slide-left": "slide-left linear infinite",
       },
     },
   },

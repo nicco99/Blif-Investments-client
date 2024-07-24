@@ -1,41 +1,48 @@
 import Image from "next/image";
 
-import plan1 from "@/public/plan1.jpg"
-import plan2 from "@/public/plan2.jpg"
-import plan3 from "@/public/plan3.jpg"
+import grid5 from "@/public/grid5.jpg";
+import grid8 from "@/public/grid8.jpg";
+import grid6 from "@/public/grid6.jpg";
+import grid7 from "@/public/grid7.jpg";
 
 export const PhotoGrid = () => {
   return (
-    <section className="bg-white pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="bg-[#f3f3f3] hidden sm:block pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[160px] min-[1000px]:auto-rows-[223px] gap-2 max-w-[1600px] w-full mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[160px] min-[1000px]:auto-rows-[223px] gap-4 max-w-[1600px] w-full mx-auto">
           <div className="relative rounded-xl overflow-hidden col-span-2 row-span-2">
             <Image
-              src={plan1}
+              src={grid6}
               alt=""
-              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-500"
+              sizes="50vw"
+              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
-            <span className="absolute bottom-10 left-10 font-bold text-white text-3xl md:text-4xl select-none">Invest in Your Future</span>
+            <span className="absolute bottom-10 left-10 font-bold text-white text-3xl md:text-4xl select-none">
+              Invest in Your Future
+            </span>
           </div>
           <div className="rounded-xl overflow-hidden col-span-1 row-span-1">
             <Image
-              src={plan2}
+              src={grid5}
               alt=""
-              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-500"
+              sizes="30vw"
+              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
           </div>
           <div className="rounded-xl overflow-hidden col-span-1 row-span-1">
             <Image
-              src={plan3}
+              src={grid7}
               alt=""
-              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-500"
+              sizes="30vw"
+              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
           </div>
           <div className="rounded-xl overflow-hidden col-span-2">
             <Image
-              src={plan1}
+              src={grid8}
               alt=""
-              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-500"
+              sizes="50vw"
+              className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
           </div>
         </div>
