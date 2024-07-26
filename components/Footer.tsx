@@ -13,7 +13,7 @@ export const Footer = () => {
             <div className="flex flex-col text-center">
               <h3 className="font-bold text-lg">About</h3>
               <p className="max-w-xs mt-4 text-gray-700">
-                At Blif Investments, we blend creativity with technical
+                At Blif Investment, we blend creativity with technical
                 expertise to bring your architectural visions to life. Our team
                 of seasoned architects, designers, and construction specialists
                 is committed to delivering innovative house plans and top-tier

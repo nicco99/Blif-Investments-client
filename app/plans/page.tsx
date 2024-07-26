@@ -1,11 +1,18 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { PlanCard } from "@/components/cards/PlanCard";
 import { getPlans } from "@/lib/api";
 import type { Plan } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Plans | Blif Investments",
+  title: "Plans",
+  openGraph: {
+    title: 'Plans',
+    type: "article",
+    locale: "en_US",
+    url: "https://blifinvestment.com/plans",
+    siteName: "Blif Investment"
+  }
 };
 
 const PlansPage = async () => {

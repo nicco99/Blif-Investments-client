@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Blif Investments"
+  title: "Contact Us",
+  openGraph: {
+    title: 'Contact Us',
+    type: "article",
+    locale: "en_US",
+    url: "https://blifinvestment.com/contact-us",
+    siteName: "Blif Investment"
+  }
 }
 
 const ContactUsPage = () => {
