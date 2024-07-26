@@ -13,12 +13,12 @@ const ContactUsPage = () => {
           <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold mb-5 text-center">
             Contact Us
           </h1>
-          <div className="flex flex-col gap-y-5 md:gap-y-6 lg:gap-y-8">
-            <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold">
+          <div className="flex flex-col gap-y-5 md:gap-y-6 lg:gap-y-8 text-center">
+            <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold">
               Contact Info
             </h2>
             <div className="flex flex-col gap-y-3">
-              <p className="text-sm md:text-base">
+              <p className="text-base md:text-lg">
                 Phone:{" "}
                 <Link
                   href="tel:+254712345678"
@@ -27,7 +27,7 @@ const ContactUsPage = () => {
                   +254712345678
                 </Link>
               </p>
-              <p className="text-sm md:text-base">
+              <p className="text-base md:text-lg">
                 Email:{" "}
                 <Link
                   href="mailto:blifinvestment@mail.com"
@@ -36,7 +36,7 @@ const ContactUsPage = () => {
                   blifinvestment@mail.com
                 </Link>
               </p>
-              <p className="text-sm md:text-base">
+              <p className="text-base md:text-lg">
                 Working Hours: Monday to Friday 8:00 am - 4:00 pm GMT +3
               </p>
             </div>

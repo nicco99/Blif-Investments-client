@@ -3,7 +3,7 @@ import { SquareCheckBig } from "lucide-react";
 import { getPlanWithId, URL } from "@/lib/api";
 import { PlanCard } from "@/components/cards/PlanCard";
 import { ProductImages } from "@/components/ProductImages";
-import { Feature, Plan } from "@/types";
+import type { Feature, Plan } from "@/types";
 import {
   filterPlanFromCategory,
   formattedPrice,

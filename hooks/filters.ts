@@ -1,5 +1,5 @@
 import { getPlans } from "@/lib/api";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 
 export const filterPlansWithCategoryId = async (categoryId: number) => {
   const plans = await getPlans();
@@ -14,7 +14,7 @@ export const filterPlansWithCategoryId = async (categoryId: number) => {
 export const imageFromPlanToCategory = async (categoryId: number) => {
   const plans = await getPlans();
 
-  const plan = plans.find(
+  const plan: Plan = plans.find(
     (plan: Plan) => plan.category_id === Number(categoryId)
   );
 

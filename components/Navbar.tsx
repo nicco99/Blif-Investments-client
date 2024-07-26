@@ -43,7 +43,7 @@ export const Navbar = () => {
       <Link
         href="/contact-us"
         className={cn(
-          "font-bold text-lg hover:text-gray-600",
+          "font-bold text-lg hover:text-gray-600 text-nowrap",
           pathname === "/contact-us" &&
             "underline underline-offset-8 decoration-2 hover:decoration-gray-400"
         )}

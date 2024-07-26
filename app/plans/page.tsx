@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 import { PlanCard } from "@/components/cards/PlanCard";
 import { getPlans } from "@/lib/api";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 
 export const metadata: Metadata = {
   title: "Plans | Blif Investments",

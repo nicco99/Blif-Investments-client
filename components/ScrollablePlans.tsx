@@ -10,7 +10,7 @@ import {
 } from "./ui/carousel";
 import { PlanCard } from "./cards/PlanCard";
 import { getPlans } from "@/lib/api";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 import { sliceArray } from "@/hooks/filters";
 
 export const ScrollablePlans = async () => {
@@ -57,7 +57,7 @@ export const ScrollablePlans = async () => {
             <CarouselPrevious className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black left-6  sm:left-[5%] md:left-[10%] transition-all ease-in-out duration-700 ring-1 ring-gray-500" />
             <CarouselNext className="md:h-10 lg:h-12 xl:h-14 md:w-10 lg:w-12 xl:w-14 border-none bg-white text-black hover:scale-110 hover:bg-white hover:text-black right-6  sm:right-[5%] md:right-[10%] transition-all ease-in-out duration-700 ring-1 ring-gray-500" />
           </Carousel>
-          <div className="flex w-full flex-col sm:hidden px-5 space-y-5">
+          <div className="flex w-full flex-col sm:hidden min-[500px]:px-5 space-y-5">
             {mobileSlicedPlans.map((plan: Plan) => (
               <PlanCard key={plan.id} plan={plan} />
             ))}

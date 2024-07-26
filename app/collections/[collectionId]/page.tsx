@@ -11,7 +11,7 @@ import {
   imageFromPlanToCategory,
 } from "@/hooks/filters";
 import { PlanSort } from "@/components/PlanSort";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 
 type Props = {
   params: {

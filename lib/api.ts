@@ -5,8 +5,8 @@ export const URL: string = process.env.API_URL!;
 
 export const getPlans = cache(async () => {
   try {
-    const data = await axios.get(`${URL}/plans`).then((res) => res.data);
-    return data.plans;
+    const { plans } = await axios.get(`${URL}/plans`).then((res) => res.data);
+    return plans;
   } catch (error) {
     console.log("[Get Plans Error]", error);
   }
@@ -14,10 +14,10 @@ export const getPlans = cache(async () => {
 
 export const getPlanWithId = cache(async (planId: number) => {
   try {
-    const data = await axios
+    const { plan } = await axios
       .get(`${URL}/plans/${planId}`)
       .then((res) => res.data);
-    return data.plan;
+    return plan;
   } catch (error) {
     console.log("[Get PlanWithId Error]", error);
   }
@@ -25,8 +25,10 @@ export const getPlanWithId = cache(async (planId: number) => {
 
 export const getCategories = cache(async () => {
   try {
-    const data = await axios.get(`${URL}/categories`).then((res) => res.data);
-    return data.categories;
+    const { categories } = await axios
+      .get(`${URL}/categories`)
+      .then((res) => res.data);
+    return categories;
   } catch (error) {
     console.log("[Get Categories Error]", error);
   }
@@ -34,10 +36,10 @@ export const getCategories = cache(async () => {
 
 export const getCategoryWithId = cache(async (categoryId: number) => {
   try {
-    const data = await axios
+    const { category } = await axios
       .get(`${URL}/categories/${categoryId}`)
       .then((res) => res.data);
-    return data.category;
+    return category;
   } catch (error) {
     console.log("[Get CategoryWithId Error]", error);
   }

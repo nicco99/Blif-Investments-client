@@ -1,11 +1,16 @@
+"use client"
+
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
+import { Input } from "./ui/input";
 
 export const PlanFilters = () => {
+  const [bathroom, setBathroom] = useState(0)
   return (
     <Accordion type="multiple" className="w-full">
       <AccordionItem value="sort" className="lg:hidden border-b-0 border-gray-400">
@@ -14,17 +19,14 @@ export const PlanFilters = () => {
         </AccordionTrigger>
         <AccordionContent></AccordionContent>
       </AccordionItem>
-      <AccordionItem value="type" className="border-y border-gray-400">
-        <AccordionTrigger className="font-bold w-full text-start">
-          Product Type
-        </AccordionTrigger>
-        <AccordionContent></AccordionContent>
-      </AccordionItem>
       <AccordionItem value="bedroom" className="border-b border-gray-400">
         <AccordionTrigger className="font-bold w-full text-start">
           Number of Bedrooms
         </AccordionTrigger>
-        <AccordionContent></AccordionContent>
+        <AccordionContent>
+          <input type="range" name="bedrooms" min="1000" max="12000" value="2000" id="bedrooms" />
+          <label htmlFor="bedrooms">{bathroom}</label>
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value="bathroom" className="border-b border-gray-400">
         <AccordionTrigger className="font-bold w-full text-start">
