@@ -6,7 +6,14 @@ import grid4 from "@/public/grid4.jpg";
 import grid9 from "@/public/grid9.jpg";
 
 export const metadata: Metadata = {
-  title: "About | Blif Investments",
+  title: "About",
+  openGraph: {
+    title: 'About',
+    type: "article",
+    locale: "en-US",
+    url: "https://blifinvestment.com/about",
+    siteName: "Blif Investment"
+  }
 };
 
 const ContactUsPage = () => {
@@ -27,11 +34,13 @@ const ContactUsPage = () => {
             <div className="flex flex-col gap-y-4 md:gap-y-6 text-center md:max-w-xl mx-auto">
               <span className="text-2xl font-bold">About Us</span>
               <p className="sm:text-lg">
-                At Blif Investments, we blend creativity with technical
-                expertise to bring your architectural visions to life. Our team
-                of seasoned architects, designers, and construction specialists
-                is committed to delivering innovative house plans and top-tier
-                construction management services tailored to your needs.
+                Blif investment is a Construction Management firm doing design
+                and building of affordable modern homes and residential
+                developments.
+                <br />
+                We offer services in Construction Management,
+                Architectural design, Interior design, structural designs,
+                project management and construction services.
               </p>
             </div>
             <hr className="h-0.5 bg-gray-300 my-10 lg:my-12" />

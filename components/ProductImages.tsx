@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ZoomIn } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import {
@@ -13,7 +14,6 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import type { Image as ImageProp } from "@/types";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
   images: ImageProp[];
@@ -28,7 +28,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
 
   useEffect(() => {
     setIndex(Number(searchParams.get("i")));
-  }, []);
+  }, [searchParams]);
 
   const imageOnclick = (idx: number) => {
     setIndex(idx);

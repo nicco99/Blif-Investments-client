@@ -1,19 +1,18 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 import { CategoryCard } from "@/components/cards/CategoryCard";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { getCategories } from "@/lib/api";
 import type { Category } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Collections | Blif Investments",
+  title: "Collections",
+  openGraph: {
+    title: 'Collections',
+    type: "article",
+    locale: "en_US",
+    url: "https://blifinvestment.com/collections",
+    siteName: "Blif Investment"
+  }
 };
 
 const PlansPage = async () => {
