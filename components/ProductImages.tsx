@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ZoomIn } from "lucide-react";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "./ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import {
   Carousel,
   CarouselContent,
@@ -16,7 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { ImageProp } from "@/types";
+import type { Image as ImageProp } from "@/types";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 type Props = {
@@ -25,19 +21,21 @@ type Props = {
 };
 
 export const ProductImages = ({ images, urlPath }: Props) => {
-  const [index, setIndex] = useState(0);
   const searchParams = useSearchParams();
+  const [index, setIndex] = useState(Number(searchParams.get("i")));
   const pathname = usePathname();
   const router = useRouter();
 
-  const imageParam = searchParams.get("i");
+  useEffect(() => {
+    setIndex(Number(searchParams.get("i")));
+  }, []);
 
   const imageOnclick = (idx: number) => {
     setIndex(idx);
     router.replace(`${pathname}?i=${idx}`);
   };
 
-  const imageUrl = `${urlPath}/${images[Number(imageParam)].image_path}`
+  const imageUrl = `${urlPath}/${images[Number(index)].image_path}`;
 
   return (
     <div>
@@ -47,6 +45,8 @@ export const ProductImages = ({ images, urlPath }: Props) => {
           alt=""
           fill
           priority
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
           sizes="(max-width: 1023px) 100vw, 40vw"
           className="object-cover lg:rounded-xl"
         />
@@ -57,14 +57,19 @@ export const ProductImages = ({ images, urlPath }: Props) => {
             </div>
           </DialogTrigger>
           <DialogContent className="bg-[#f3f3f3] h-full">
-            <Image
-              src={imageUrl}
-              alt=""
-              fill
-              quality={100}
-              sizes="100vw"
-              className="object-contain"
-            />
+            <div className="flex items-center justify-center">
+              <Image
+                src={imageUrl}
+                alt=""
+                height={800}
+                width={1200}
+                quality={100}
+                sizes="100vw"
+                placeholder="blur"
+                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAECAYAAABLLYUHAAAAE0lEQVR42mM8efr0TwYoYCSOAwCQ5Q1lp1rsQAAAAABJRU5ErkJggg=="
+                className="aspect-[3/2] object-contain"
+              />
+            </div>
           </DialogContent>
         </Dialog>
       </div>
@@ -84,7 +89,9 @@ export const ProductImages = ({ images, urlPath }: Props) => {
                     src={`${urlPath}/${image.image_path}`}
                     alt=""
                     fill
-                    sizes="30vw"
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
+                    sizes="20vw"
                     className="object-cover rounded-lg lg:rounded-xl"
                   />
                 </div>

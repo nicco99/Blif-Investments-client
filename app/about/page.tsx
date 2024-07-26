@@ -17,6 +17,7 @@ const ContactUsPage = () => {
           <div className="relative flex flex-col justify-center items-center max-h-[22rem] overflow-hidden before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
             <Image
               src={grid9}
+              placeholder="blur"
               alt=""
               sizes="100vw"
               className="object-cover h-full"
@@ -39,6 +40,7 @@ const ContactUsPage = () => {
                 <div className="w-full mx-auto lg:w-1/2">
                   <Image
                     src={grid3}
+                    placeholder="blur"
                     alt=""
                     sizes="50vw"
                     className="rounded-xl lg:rounded-3xl lg:rounded-br-none"
@@ -87,6 +89,7 @@ const ContactUsPage = () => {
                 <div className="w-full mx-auto lg:w-1/2 lg:order-last">
                   <Image
                     src={grid4}
+                    placeholder="blur"
                     alt=""
                     sizes="50vw"
                     className="rounded-xl lg:rounded-3xl lg:rounded-tl-none"

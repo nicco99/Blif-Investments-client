@@ -12,7 +12,7 @@ export type Plan = {
   plan_length: number;
   plan_height: number;
   description: string;
-  images: ImageProp[];
+  images: Image[];
   features: Feature[];
 };
 
@@ -27,7 +27,7 @@ export type Feature = {
   description: string;
 };
 
-export type ImageProp = {
+export type Image = {
   id: number;
   image_path: string;
 };

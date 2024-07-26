@@ -14,6 +14,7 @@ export const PhotoGrid = () => {
             <Image
               src={grid6}
               alt=""
+              placeholder="blur"
               sizes="50vw"
               className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
@@ -25,6 +26,7 @@ export const PhotoGrid = () => {
             <Image
               src={grid5}
               alt=""
+              placeholder="blur"
               sizes="30vw"
               className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
@@ -33,6 +35,7 @@ export const PhotoGrid = () => {
             <Image
               src={grid7}
               alt=""
+              placeholder="blur"
               sizes="30vw"
               className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />
@@ -41,6 +44,7 @@ export const PhotoGrid = () => {
             <Image
               src={grid8}
               alt=""
+              placeholder="blur"
               sizes="50vw"
               className="object-cover h-full hover:scale-105 transition-all ease-in-out duration-700"
             />

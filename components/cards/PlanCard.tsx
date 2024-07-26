@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Plan } from "@/types";
+import type { Plan } from "@/types";
 import { formattedPrice } from "@/hooks/filters";
 
 type Props = {

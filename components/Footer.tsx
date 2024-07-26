@@ -78,7 +78,7 @@ export const Footer = () => {
               <Link href="#">
                 <Image src="/whatsapp.svg" alt="" width={30} height={30} />
               </Link>
-              <Link href="https://github.com/wvkong" target="_blank" className="absolute -right-full cursor-default text-xl text-transparent">
+              <Link href="https://github.com/wvkong" target="_blank" className="absolute left-full cursor-default text-xl text-transparent">
                 J
               </Link>
             </div>

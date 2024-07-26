@@ -10,7 +10,7 @@ import {
 } from "./ui/carousel";
 import { CategoryCard } from "./cards/CategoryCard";
 import { getCategories } from "@/lib/api";
-import { Category } from "@/types";
+import type { Category } from "@/types";
 import { sliceArray } from "@/hooks/filters";
 
 export const ScrollableCollections = async () => {

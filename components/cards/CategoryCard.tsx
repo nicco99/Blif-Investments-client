@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import plan3 from "@/public/plan3.jpg";
 import { imageFromPlanToCategory } from "@/hooks/filters";
-import { Category } from "@/types";
+import type { Category } from "@/types";
 
 type Props = {
   category: Category;
