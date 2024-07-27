@@ -36,7 +36,7 @@ export async function generateMetadata({
       siteName: "Blif Investment",
       images: [
         {
-          url: `${URL}/${plan.images[0].image_path}`,
+          url: `/api/og/plan?id=${params.planId}`,
           width: 1200,
           height: 630,
           alt: plan.plan_name
