@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     siteName: "Blif Investment",
     images: [
       {
-        url: "https://blifinvestment.com/public/og-image.png",
+        url: "https://blifinvestment.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Contact Us | Blif Investment"
