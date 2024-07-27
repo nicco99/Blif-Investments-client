@@ -39,6 +39,7 @@ export async function generateMetadata({
           url: `${URL}/${plan.images[0].image_path}`,
           width: 1200,
           height: 630,
+          alt: plan.plan_name
         },
       ],
     },
