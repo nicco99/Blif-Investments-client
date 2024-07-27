@@ -11,7 +11,15 @@ export const metadata: Metadata = {
     type: "article",
     locale: "en_US",
     url: "https://blifinvestment.com/collections",
-    siteName: "Blif Investment"
+    siteName: "Blif Investment",
+    images: [
+      {
+        url: "https://blifinvestment.com/public/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Collections | Blif Investment"
+      }
+    ]
   }
 };
 

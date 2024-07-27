@@ -21,7 +21,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en-US",
     url: "https://blifinvestment.com/",
-    siteName: "Blif Investment"
+    siteName: "Blif Investment",
+    images: [
+      {
+        url: "https://blifinvestment.com/public/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Blif Investment"
+      }
+    ]
   }
 };
 
