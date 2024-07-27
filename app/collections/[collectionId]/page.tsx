@@ -41,7 +41,7 @@ export async function generateMetadata({
       siteName: "Blif Investment",
       images: [
         {
-          url: `${process.env.API_URL!}/${image}`,
+          url: `/api/og/collection?id=${params.collectionId}`,
           width: 1200,
           height: 630,
           alt: category.name

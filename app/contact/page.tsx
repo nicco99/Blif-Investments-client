@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Contact Us',
     type: "article",
     locale: "en_US",
-    url: "https://blifinvestment.com/contact-us",
+    url: "https://blifinvestment.com/contact",
     siteName: "Blif Investment",
     images: [
       {

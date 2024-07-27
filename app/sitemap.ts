@@ -11,7 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: "https://blifinvestment.com/contact-us",
+      url: "https://blifinvestment.com/contact",
       lastModified: new Date(),
     },
     {

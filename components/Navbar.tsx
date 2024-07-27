@@ -41,10 +41,10 @@ export const Navbar = () => {
         About
       </Link>
       <Link
-        href="/contact-us"
+        href="/contact"
         className={cn(
           "font-bold text-lg hover:text-gray-600 text-nowrap",
-          pathname === "/contact-us" &&
+          pathname === "/contact" &&
             "underline underline-offset-8 decoration-2 hover:decoration-gray-400"
         )}
       >
