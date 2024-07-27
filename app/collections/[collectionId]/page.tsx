@@ -24,7 +24,6 @@ export async function generateMetadata({
   params,
 }: Props): Promise<Metadata | undefined> {
   const category: Category = await getCategoryWithId(params.collectionId);
-  const image = await imageFromPlanToCategory(params.collectionId);
 
   if (!category) {
     return;
@@ -41,10 +40,10 @@ export async function generateMetadata({
       siteName: "Blif Investment",
       images: [
         {
-          url: `/api/og/collection?id=${params.collectionId}`,
+          url: "https://blifinvestment.com/og-image.png",
           width: 1200,
           height: 630,
-          alt: category.name
+          alt: category.name,
         },
       ],
     },

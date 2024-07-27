@@ -36,10 +36,10 @@ export async function generateMetadata({
       siteName: "Blif Investment",
       images: [
         {
-          url: `/api/og/plan?id=${params.planId}`,
+          url: "https://blifinvestment.com/og-image.png",
           width: 1200,
           height: 630,
-          alt: plan.plan_name
+          alt: plan.plan_name,
         },
       ],
     },
