@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact Us",
   openGraph: {
-    title: 'Contact Us',
+    title: 'Contact Us | Blif Investment',
     type: "article",
     locale: "en_US",
     url: "https://blifinvestment.com/contact",
