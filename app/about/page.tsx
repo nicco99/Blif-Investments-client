@@ -8,7 +8,7 @@ import grid9 from "@/public/grid9.jpg";
 export const metadata: Metadata = {
   title: "About",
   openGraph: {
-    title: 'About',
+    title: 'About | Blif Investment',
     type: "article",
     locale: "en-US",
     url: "https://blifinvestment.com/about",

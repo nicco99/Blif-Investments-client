@@ -7,7 +7,7 @@ import type { Plan } from "@/types";
 export const metadata: Metadata = {
   title: "Plans",
   openGraph: {
-    title: 'Plans',
+    title: 'Plans | Blif Investment',
     type: "article",
     locale: "en_US",
     url: "https://blifinvestment.com/plans",

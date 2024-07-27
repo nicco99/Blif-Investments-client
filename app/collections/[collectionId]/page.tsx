@@ -29,7 +29,7 @@ export async function generateMetadata({
     return;
   }
   return {
-    title: category.name,
+    title: `${category.name} | Blif Investment`,
     description: category.description,
     openGraph: {
       title: category.name,

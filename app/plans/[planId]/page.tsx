@@ -28,7 +28,7 @@ export async function generateMetadata({
     title: plan.plan_name,
     description: plan.description,
     openGraph: {
-      title: plan.plan_name,
+      title: `${plan.plan_name} | Blif Investment`,
       description: plan.description,
       type: "article",
       locale: "en_US",
