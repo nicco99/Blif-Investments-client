@@ -34,6 +34,13 @@ export async function generateMetadata({
       locale: "en_US",
       url: `https://blifinvestment.com/plans/${params.planId}`,
       siteName: "Blif Investment",
+      images: [
+        {
+          url: `${URL}/${plan.images[0].image_path}`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   };
 }
