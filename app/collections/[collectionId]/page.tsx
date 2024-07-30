@@ -18,6 +18,13 @@ type Props = {
   params: {
     collectionId: number;
   };
+  searchParams: {
+    sort: "none" | "name-asc" | "name-desc" | "price-asc" | "price-desc";
+    bdrm: string;
+    btrm: string;
+    flrs: string;
+    prce: string;
+  };
 };
 
 export async function generateMetadata({
@@ -50,9 +57,19 @@ export async function generateMetadata({
   };
 }
 
-const CollectionIdPage = async ({ params }: Props) => {
+const CollectionIdPage = async ({ params, searchParams }: Props) => {
+  const filters = {
+    bdrm: searchParams?.bdrm,
+    btrm: searchParams?.btrm,
+    flrs: searchParams?.flrs,
+    prce: searchParams?.prce,
+  };
   const categoryData = getCategoryWithId(params.collectionId);
-  const filteredPlansData = filterPlansWithCategoryId(params.collectionId);
+  const filteredPlansData = filterPlansWithCategoryId(
+    params.collectionId,
+    filters,
+    searchParams?.sort
+  );
   const coverImageData = imageFromPlanToCategory(params.collectionId);
 
   const [category, filteredPlans, coverImage] = await Promise.all([
@@ -85,23 +102,25 @@ const CollectionIdPage = async ({ params }: Props) => {
           </div>
           <div className="w-full flex flex-col lg:grid grid-cols-4 lg:gap-x-12">
             <p className="lg:hidden text-center text-sm md:text-base">
-              {`${filteredPlans.length} product${
-                filteredPlans.length === 1 ? "" : "s"
+              {`${filteredPlans?.length} product${
+                filteredPlans?.length === 1 ? "" : "s"
               }`}
             </p>
+            <div className="sticky top-[95px] hidden lg:flex items-center justify-between z-30 w-full py-3 bg-[#f3f3f3] col-span-4">
+              <div className="flex space-x-3">
+                <Settings2 className="h-5 w-5" />
+                <span>Filters</span>
+              </div>
+              <PlanSort />
+            </div>
             <div className="hidden lg:block items-start col-span-1">
-              <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[95px] w-full py-12">
-                <div className="flex space-x-3">
-                  <Settings2 className="h-5 w-5" />
-                  <span>Filters</span>
-                </div>
+              <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[200px] w-full">
                 <PlanFilters />
               </div>
             </div>
             <div className="flex flex-col col-span-3">
-              <PlanSort />
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
-                {filteredPlans.map((plan: Plan) => (
+                {filteredPlans?.map((plan: Plan) => (
                   <PlanCard key={plan.id} plan={plan} />
                 ))}
               </div>

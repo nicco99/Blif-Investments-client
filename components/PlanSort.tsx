@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Select,
@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "./ui/select";
 import { cn } from "@/lib/utils";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const SORT_OPTIONS = [
   {
@@ -36,14 +37,44 @@ const SORT_OPTIONS = [
 ] as const;
 
 export const PlanSort = () => {
-  const [sort, setSort] = useState("none");
-  // console.log(sort);
+  const searchParams = useSearchParams();
+
+  let defaultSort;
+  if (
+    searchParams.get("sort") === "none" ||
+    searchParams.get("sort") === "name-asc" ||
+    searchParams.get("sort") === "name-desc" ||
+    searchParams.get("sort") === "price-asc" ||
+    searchParams.get("sort") === "price-desc"
+  ) {
+    defaultSort = searchParams.get("sort");
+  } else {
+    defaultSort = "none";
+  }
+  const [sort, setSort] = useState(defaultSort);
+
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const bdrm = searchParams.get("bdrm");
+  const btrm = searchParams.get("btrm");
+  const flrs = searchParams.get("flrs");
+  const prce = searchParams.get("prce");
+
+  useEffect(() => {
+    router.push(
+      `${pathname}?sort=${sort}&bdrm=${bdrm}&btrm=${btrm}&flrs=${flrs}&prce=${prce}`
+    );
+  }, [sort, bdrm, btrm, flrs, prce, pathname, router]);
 
   return (
-    <div className="sticky top-[95px] hidden lg:flex aspect-w-1 aspect-h-1 items-center justify-end z-30 w-full py-6 lg:py-8 bg-[#f3f3f3]">
+    <div className="flex items-center justify-end max-w-52 w-full">
       <span className="font-bold">Sort by:</span>
-      <Select value={sort} onValueChange={(value) => setSort(value)}>
-        <SelectTrigger className="w-1/5 bg-transparent">
+      <Select
+        value={sort ? sort : "none"}
+        onValueChange={(value) => setSort(value)}
+      >
+        <SelectTrigger className="bg-transparent w-2/3">
           <SelectValue placeholder="None" className="text-lg" />
         </SelectTrigger>
         <SelectContent>
@@ -52,7 +83,10 @@ export const PlanSort = () => {
               <SelectItem
                 key={option.value}
                 value={option.value}
-                className={cn("text-gray-700", sort === option.value && "text-black font-semibold")}
+                className={cn(
+                  "text-gray-700",
+                  sort === option.value && "text-black font-semibold"
+                )}
               >
                 {option.name}
               </SelectItem>
