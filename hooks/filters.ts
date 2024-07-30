@@ -1,14 +1,101 @@
 import { getPlans } from "@/lib/api";
 import type { Plan } from "@/types";
 
-export const filterPlansWithCategoryId = async (categoryId: number) => {
+type Filters = {
+  bdrm: string;
+  btrm: string;
+  flrs: string;
+  prce: string;
+};
+
+export const filterPlansWithCategoryId = async (
+  categoryId: number,
+  filters: Filters,
+  sort?: string
+) => {
   const plans = await getPlans();
 
-  const filteredPlans = plans.filter(
+  const filteredCategoryPlans = plans.filter(
     (plan: Plan) => plan.category_id === Number(categoryId)
   );
 
-  return filteredPlans;
+  const convert = (value: string) => value?.split(",").map(Number);
+
+  const filterPlans = ({ bdrm, btrm, flrs, prce }: Filters) => {
+    const [priceMin, priceMax] = convert(prce);
+    const bdrmArr = convert(bdrm);
+    const btrmArr = convert(btrm);
+    const flrsArr = convert(flrs);
+    return filteredCategoryPlans.filter((plan: Plan) => {
+      const bdrmMatch = bdrmArr.some((val) =>
+        val === 4 ? plan.no_of_bedrooms >= 4 : plan.no_of_bedrooms === val
+      );
+      const btrmMatch = btrmArr.some((val) =>
+        val === 4 ? plan.no_of_bathrooms >= 4 : plan.no_of_bathrooms === val
+      );
+      const flrsMatch = flrsArr.some((val) =>
+        val === 4 ? plan.floors >= 4 : plan.floors === val
+      );
+      const priceMatch = plan.price >= priceMin && plan.price <= priceMax;
+
+      return bdrmMatch && btrmMatch && flrsMatch && priceMatch;
+    });
+  };
+
+  let sortedPlans = filterPlans(filters);
+  switch (sort) {
+    case "none":
+      sortedPlans = [...sortedPlans];
+      break;
+    case "name-asc":
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
+        if (a.plan_name < b.plan_name) {
+          return -1;
+        }
+        if (a.plan_name > b.plan_name) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    case "name-desc":
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
+        if (a.plan_name > b.plan_name) {
+          return -1;
+        }
+        if (a.plan_name < b.plan_name) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    case "price-asc":
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
+        if (a.price < b.price) {
+          return -1;
+        }
+        if (a.price > b.price) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    case "price-desc":
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
+        if (a.price > b.price) {
+          return -1;
+        }
+        if (a.price < b.price) {
+          return 1;
+        }
+        return 0;
+      });
+      break;
+    default:
+      sortedPlans = [...sortedPlans];
+      break;
+  }
+  return sortedPlans;
 };
 
 export const imageFromPlanToCategory = async (categoryId: number) => {
@@ -25,13 +112,17 @@ export const filterPlanFromCategory = async (
   planId: number,
   categoryId: number
 ) => {
-  const plans = await filterPlansWithCategoryId(categoryId);
+  const plans = await getPlans();
 
   const filteredPlans = plans.filter(
+    (plan: Plan) => plan.category_id === Number(categoryId)
+  );
+
+  const newFilteredPlans = filteredPlans?.filter(
     (plan: Plan) => plan.id !== Number(planId)
   );
 
-  return filteredPlans;
+  return newFilteredPlans;
 };
 
 export const sliceArray = (array: [], items: number) => {
@@ -86,7 +177,7 @@ export const handleSort = (plans: Plan[], value: string) => {
       });
       break;
     default:
-      plans
+      plans;
       break;
   }
 };

@@ -12,7 +12,7 @@ type Props = {
 export const CategoryCard = async ({ category }: Props) => {
   const imageUrl = await imageFromPlanToCategory(category.id);
   return (
-    <Link href={`/collections/${category.id}`} prefetch={false}>
+    <Link href={`/collections/${category.id}?sort=none&bdrm=1,2,3,4&btrm=1,2,3,4&flrs=1,2,3,4&prce=0,10000000`} prefetch={false}>
       <div className="relative aspect-video group rounded-lg overflow-hidden hover:z-20 lg:hover:drop-shadow-xl transition-all ease-in-out duration-700 cursor-pointer before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
         <Image
           src={{ imageUrl } ? `${process.env.API_URL!}/${imageUrl}` : plan3}

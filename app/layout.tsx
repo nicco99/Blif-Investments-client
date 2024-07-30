@@ -12,11 +12,11 @@ const font = Dosis({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
     default: "Blif Investment",
-    template: "%s | Blif Investment"
+    template: "%s | Blif Investment",
   },
   description: "We design and build modern affordable homes in Kenya.",
   openGraph: {
-    title: 'Blif Investment',
+    title: "Blif Investment",
     description: "",
     type: "website",
     locale: "en-US",
@@ -27,10 +27,10 @@ export const metadata: Metadata = {
         url: "https://blifinvestment.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Blif Investment"
-      }
-    ]
-  }
+        alt: "Blif Investment",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
