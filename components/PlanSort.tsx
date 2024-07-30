@@ -56,14 +56,16 @@ export const PlanSort = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const bdrm = searchParams.get("bdrm")
-  const btrm = searchParams.get("btrm")
-  const flrs = searchParams.get("flrs")
-  const prce = searchParams.get("prce")
+  const bdrm = searchParams.get("bdrm");
+  const btrm = searchParams.get("btrm");
+  const flrs = searchParams.get("flrs");
+  const prce = searchParams.get("prce");
 
   useEffect(() => {
-    router.push(`${pathname}?sort=${sort}&bdrm=${bdrm}&btrm=${btrm}&flrs=${flrs}&prce=${prce}`);
-  }, [sort]);
+    router.push(
+      `${pathname}?sort=${sort}&bdrm=${bdrm}&btrm=${btrm}&flrs=${flrs}&prce=${prce}`
+    );
+  }, [sort, bdrm, btrm, flrs, prce, pathname, router]);
 
   return (
     <div className="flex items-center justify-end max-w-52 w-full">
