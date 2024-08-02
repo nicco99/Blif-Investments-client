@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
-import { PlanCard } from "@/components/cards/PlanCard";
-import { getPlans } from "@/lib/api";
-import type { Plan } from "@/types";
+import { RenderPlans } from "./RenderPlans";
 
 export const metadata: Metadata = {
   title: "Plans",
   openGraph: {
-    title: 'Plans | Blif Investment',
+    title: "Plans | Blif Investment",
     type: "article",
     locale: "en_US",
     url: "https://blifinvestment.com/plans",
@@ -17,15 +20,14 @@ export const metadata: Metadata = {
         url: "https://blifinvestment.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Plans | Blif Investment"
-      }
-    ]
-  }
+        alt: "Plans | Blif Investment",
+      },
+    ],
+  },
 };
 
-const PlansPage = async () => {
-  const plans = await getPlans();
-
+const PlansPage = () => {
+  const queryClient = new QueryClient();
   return (
     <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
@@ -34,9 +36,9 @@ const PlansPage = async () => {
             All plans
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-            {plans.map((plan: Plan) => (
-              <PlanCard key={plan.id} plan={plan} />
-            ))}
+            <HydrationBoundary state={dehydrate(queryClient)}>
+              <RenderPlans />
+            </HydrationBoundary>
           </div>
         </div>
       </div>

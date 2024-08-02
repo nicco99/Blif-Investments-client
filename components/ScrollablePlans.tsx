@@ -16,7 +16,7 @@ import { sliceArray } from "@/hooks/filters";
 export const ScrollablePlans = async () => {
   const plans = await getPlans();
   const slicedPlans = sliceArray(plans, 8);
-  const mobileSlicedPlans = sliceArray(plans, 3)
+  const mobileSlicedPlans = sliceArray(plans, 3);
   return (
     <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-0">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
@@ -33,6 +33,7 @@ export const ScrollablePlans = async () => {
             </div>
             <div className="flex lg:items-end">
               <Link
+                prefetch={false}
                 href="/plans"
                 className="flex items-center gap-x-3 group text-xs sm:text-sm hover:underline hover:underline-offset-4 transition-all ease-in-out duration-700"
               >

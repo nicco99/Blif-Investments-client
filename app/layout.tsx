@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 import "@/app/globals.css";
+import Providers from "@/components/Provider/provider";
 
 const font = Dosis({ subsets: ["latin"] });
 
@@ -43,7 +44,7 @@ export default function RootLayout({
       <body className={font.className}>
         <MarqueeComp />
         <Header />
-        {children}
+        <Providers>{children}</Providers>
         <Footer />
       </body>
     </html>

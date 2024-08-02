@@ -33,6 +33,7 @@ export const ScrollableCollections = async () => {
             </div>
             <div className="flex lg:items-end">
               <Link
+                prefetch={false}
                 href="/collections"
                 className="flex items-center gap-x-3 group text-xs sm:text-sm hover:underline hover:underline-offset-4 transition-all ease-in-out duration-700"
               >

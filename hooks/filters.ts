@@ -18,34 +18,44 @@ export const filterPlansWithCategoryId = async (
   const filteredCategoryPlans = plans.filter(
     (plan: Plan) => plan.category_id === Number(categoryId)
   );
+  let sortedPlans;
 
   const convert = (value: string) => value?.split(",").map(Number);
 
+  const matchesFilter = (planValue: number, filterValues: number[]) =>
+    filterValues.some((value) =>
+      value === 4 ? planValue >= 4 : planValue === value
+    );
+
   const filterPlans = ({ bdrm, btrm, flrs, prce }: Filters) => {
     const [priceMin, priceMax] = convert(prce);
-    const bdrmArr = convert(bdrm);
-    const btrmArr = convert(btrm);
-    const flrsArr = convert(flrs);
+    const bdrmArr = bdrm ? convert(bdrm) : null;
+    const btrmArr = btrm ? convert(btrm) : null;
+    const flrsArr = flrs ? convert(flrs) : null;
+
     return filteredCategoryPlans.filter((plan: Plan) => {
-      const bdrmMatch = bdrmArr.some((val) =>
-        val === 4 ? plan.no_of_bedrooms >= 4 : plan.no_of_bedrooms === val
-      );
-      const btrmMatch = btrmArr.some((val) =>
-        val === 4 ? plan.no_of_bathrooms >= 4 : plan.no_of_bathrooms === val
-      );
-      const flrsMatch = flrsArr.some((val) =>
-        val === 4 ? plan.floors >= 4 : plan.floors === val
-      );
-      const priceMatch = plan.price >= priceMin && plan.price <= priceMax;
+      const bdrmMatch = bdrmArr
+        ? matchesFilter(plan.no_of_bedrooms, bdrmArr)
+        : true;
+      const btrmMatch = btrmArr
+        ? matchesFilter(plan.no_of_bathrooms, btrmArr)
+        : true;
+      const flrsMatch = flrsArr ? matchesFilter(plan.floors, flrsArr) : true;
+      const priceMatch = prce
+        ? plan.price >= priceMin && plan.price <= priceMax
+        : true;
 
       return bdrmMatch && btrmMatch && flrsMatch && priceMatch;
     });
   };
+  if (filters.bdrm || filters.btrm || filters.flrs || filters.prce) {
+    sortedPlans = filterPlans(filters);
+  } else {
+    sortedPlans = filteredCategoryPlans;
+  }
 
-  let sortedPlans = filterPlans(filters);
   switch (sort) {
     case "none":
-      sortedPlans = [...sortedPlans];
       break;
     case "name-asc":
       sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
@@ -92,7 +102,7 @@ export const filterPlansWithCategoryId = async (
       });
       break;
     default:
-      sortedPlans = [...sortedPlans];
+      sortedPlans = filteredCategoryPlans;
       break;
   }
   return sortedPlans;
@@ -104,7 +114,6 @@ export const imageFromPlanToCategory = async (categoryId: number) => {
   const plan: Plan = plans.find(
     (plan: Plan) => plan.category_id === Number(categoryId)
   );
-
   return plan?.images[1]?.image_path;
 };
 

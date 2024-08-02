@@ -4,17 +4,20 @@ import { ScrollableCollections } from "@/components/ScrollableCollections";
 import { ScrollablePlans } from "@/components/ScrollablePlans";
 import { Counter } from "@/components/Counter";
 import { PhotoGrid } from "@/components/PhotoGrid";
+import { QueryClient } from "@tanstack/react-query";
+import { getCategories, getPlans } from "@/lib/api";
 
-export default function Home() {
-  const items = [
-    "First piece of text",
-    "Second piece of text",
-    "Third piece of text",
-    "Fourth piece of text",
-    "Fifth piece of text",
-  ];
-  const amount = 5;
-  const time = 50
+const Home = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ["plans"],
+    queryFn: getPlans
+  })
+  await queryClient.prefetchQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories
+  })
+  
   return (
     <main className="w-full">
       <HeroSection />
@@ -25,4 +28,6 @@ export default function Home() {
       <PhotoGrid />
     </main>
   );
-}
+};
+
+export default Home;
