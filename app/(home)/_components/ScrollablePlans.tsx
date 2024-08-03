@@ -7,8 +7,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
-import { PlanCard } from "./cards/PlanCard";
+} from "@/components/ui/carousel";
+import { PlanCard } from "@/components/cards/PlanCard";
 import { getPlans } from "@/lib/api";
 import type { Plan } from "@/types";
 import { sliceArray } from "@/hooks/filters";

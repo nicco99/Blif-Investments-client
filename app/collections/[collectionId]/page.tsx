@@ -4,14 +4,14 @@ import type { Metadata } from "next";
 
 import plan3 from "@/public/plan3.jpg";
 import { PlanCard } from "@/components/cards/PlanCard";
-import { PlanFilters } from "@/components/PlanFilters";
-import { FloatingFilter } from "@/components/FloatingFilter";
+import { PlanFilters } from "./_components/PlanFilters";
+import { FloatingFilter } from "./_components/FloatingFilter";
 import { getCategoryWithId } from "@/lib/api";
 import {
   filterPlansWithCategoryId,
   imageFromPlanToCategory,
 } from "@/hooks/filters";
-import { PlanSort } from "@/components/PlanSort";
+import { PlanSort } from "./_components/PlanSort";
 import type { Category, Plan } from "@/types";
 import { PlanNotFound } from "@/components/PlanNotFound";
 
@@ -86,7 +86,9 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
           <div className="relative flex w-full justify-center items-center h-[23.5rem] md:h-[25rem] xl:h-[28rem] overflow-hidden rounded-3xl before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
             <Image
               src={
-                { coverImage } ? `${process.env.NEXT_PUBLIC_API_URL!}/${coverImage}` : plan3
+                { coverImage }
+                  ? `${process.env.NEXT_PUBLIC_API_URL!}/${coverImage}`
+                  : plan3
               }
               alt=""
               fill

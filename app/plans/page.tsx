@@ -5,7 +5,8 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import { RenderPlans } from "./RenderPlans";
+import { RenderPlans } from "./_components/RenderPlans";
+import { PlansPagination } from "./_components/PlansPagination";
 
 export const metadata: Metadata = {
   title: "Plans",
@@ -40,6 +41,7 @@ const PlansPage = () => {
               <RenderPlans />
             </HydrationBoundary>
           </div>
+          <PlansPagination />
         </div>
       </div>
     </section>

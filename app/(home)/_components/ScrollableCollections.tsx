@@ -7,8 +7,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "./ui/carousel";
-import { CategoryCard } from "./cards/CategoryCard";
+} from "@/components/ui/carousel";
+import { CategoryCard } from "@/components/cards/CategoryCard";
 import { getCategories } from "@/lib/api";
 import type { Category } from "@/types";
 import { sliceArray } from "@/hooks/filters";

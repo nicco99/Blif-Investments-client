@@ -1,4 +1,4 @@
-import Scroll from "@/components/Scroll";
+import Scroll from "@/app/plans/[planId]/_components/Scroll";
 
 export default function RootLayout({
   children,

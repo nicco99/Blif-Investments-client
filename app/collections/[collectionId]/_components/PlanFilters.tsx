@@ -8,11 +8,11 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion";
+} from "@/components/ui/accordion";
 import { BEDROOM_DEFAULTS, ProductState } from "@/lib/validators";
-import { Slider } from "./ui/slider";
+import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { formattedPrice } from "@/hooks/filters";
 
 const PRICE_FILTER = [
@@ -21,14 +21,15 @@ const PRICE_FILTER = [
   { value: [0, 5000000], label: "Under KES 5,000,000" },
 ] as const;
 const DEFAULT_CUSTOM_PRICE = [0, 10000000] as [number, number];
+const DEFAULT_FILTER = {
+  bdrm: [],
+  btrm: [],
+  flrs: [],
+  prce: { isCustom: false, range: DEFAULT_CUSTOM_PRICE },
+};
 
 export const PlanFilters = () => {
-  const [filter, setFilter] = useState<ProductState>({
-    bdrm: [],
-    btrm: [],
-    flrs: [],
-    prce: { isCustom: false, range: DEFAULT_CUSTOM_PRICE },
-  });
+  const [filter, setFilter] = useState<ProductState>(DEFAULT_FILTER);
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -84,6 +85,7 @@ export const PlanFilters = () => {
     sizeSearchParams.delete("btrm");
     sizeSearchParams.delete("flrs");
     sizeSearchParams.delete("prce");
+    setFilter(DEFAULT_FILTER)
     router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
   };
 

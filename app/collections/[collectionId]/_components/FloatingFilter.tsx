@@ -7,9 +7,9 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "./ui/sheet";
-import { PlanFilters } from "./PlanFilters";
+} from "@/components/ui/sheet";
 import { PlanSort } from "./PlanSort";
+import { PlanFilters } from "./PlanFilters";
 
 export const FloatingFilter = () => {
   return (

@@ -1,5 +1,6 @@
 import { getPlans } from "@/lib/api";
 import type { Plan } from "@/types";
+import { number } from "zod";
 
 type Filters = {
   bdrm: string;
@@ -28,7 +29,7 @@ export const filterPlansWithCategoryId = async (
     );
 
   const filterPlans = ({ bdrm, btrm, flrs, prce }: Filters) => {
-    const [priceMin, priceMax] = convert(prce);
+    const [priceMin, priceMax] = prce ? convert(prce) : [0, 10000000];
     const bdrmArr = bdrm ? convert(bdrm) : null;
     const btrmArr = btrm ? convert(btrm) : null;
     const flrsArr = flrs ? convert(flrs) : null;
@@ -48,62 +49,41 @@ export const filterPlansWithCategoryId = async (
       return bdrmMatch && btrmMatch && flrsMatch && priceMatch;
     });
   };
+
   if (filters.bdrm || filters.btrm || filters.flrs || filters.prce) {
     sortedPlans = filterPlans(filters);
   } else {
     sortedPlans = filteredCategoryPlans;
   }
 
-  switch (sort) {
-    case "none":
-      break;
-    case "name-asc":
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
-        if (a.plan_name < b.plan_name) {
-          return -1;
-        }
-        if (a.plan_name > b.plan_name) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    case "name-desc":
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
-        if (a.plan_name > b.plan_name) {
-          return -1;
-        }
-        if (a.plan_name < b.plan_name) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    case "price-asc":
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
-        if (a.price < b.price) {
-          return -1;
-        }
-        if (a.price > b.price) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    case "price-desc":
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) => {
-        if (a.price > b.price) {
-          return -1;
-        }
-        if (a.price < b.price) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    default:
-      sortedPlans = filteredCategoryPlans;
-      break;
+  const compare = (a: Plan, b: Plan, key: keyof Plan, asc: boolean) => {
+    if (a[key] < b[key]) {
+      return asc ? -1 : 1;
+    }
+    if (a[key] > b[key]) {
+      return asc ? 1 : -1;
+    }
+    return 0;
+  };
+
+  if (sort) {
+    if (sort === "name-asc") {
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
+        compare(a, b, "plan_name", true)
+      );
+    } else if (sort === "name-desc") {
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
+        compare(a, b, "plan_name", false)
+      );
+    } else if (sort === "price-asc") {
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
+        compare(a, b, "price", true)
+      );
+    } else if (sort === "price-desc") {
+      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
+        compare(a, b, "price", false)
+      );
+    }
   }
   return sortedPlans;
 };
