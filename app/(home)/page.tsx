@@ -1,10 +1,11 @@
-import { HeroSection } from "@/components/HeroSection";
-import { MarqueeCenter } from "@/components/MarqueeCenter";
-import { ScrollableCollections } from "@/components/ScrollableCollections";
-import { ScrollablePlans } from "@/components/ScrollablePlans";
-import { Counter } from "@/components/Counter";
-import { PhotoGrid } from "@/components/PhotoGrid";
 import { QueryClient } from "@tanstack/react-query";
+
+import { HeroSection } from "@/app/(home)/_components/HeroSection";
+import { MarqueeCenter } from "@/app/(home)/_components/MarqueeCenter";
+import { ScrollableCollections } from "@/app/(home)/_components/ScrollableCollections";
+import { ScrollablePlans } from "@/app/(home)/_components/ScrollablePlans";
+import { Counter } from "@/app/(home)/_components/Counter";
+import { PhotoGrid } from "@/app/(home)/_components/PhotoGrid";
 import { getCategories, getPlans } from "@/lib/api";
 
 const Home = async () => {

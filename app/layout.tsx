@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Dosis } from "next/font/google";
 
 import { MarqueeComp } from "@/components/Marquee";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/Footer";
 
 import "@/app/globals.css";

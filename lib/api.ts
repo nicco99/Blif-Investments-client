@@ -6,7 +6,7 @@ export const URL: string = process.env.NEXT_PUBLIC_API_URL!;
 export const getPlans = cache(async () => {
   try {
     const { plans } = await axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/plans`)
+      .get(`${URL}/plans`)
       .then((res) => res.data);
     return plans;
   } catch (error) {
@@ -28,7 +28,7 @@ export const getPlanWithId = cache(async (planId: number) => {
 export const getCategories = cache(async () => {
   try {
     const { categories } = await axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
+      .get(`${URL}/categories`)
       .then((res) => res.data);
     return categories;
   } catch (error) {

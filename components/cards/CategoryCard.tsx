@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
-import plan2 from "@/public/plan2.jpg";
 import { imageFromPlanToCategory } from "@/hooks/filters";
 import type { Category } from "@/types";
 import { Skeleton } from "../ui/skeleton";

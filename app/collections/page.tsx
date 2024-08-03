@@ -4,6 +4,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import type { Metadata } from "next";
+
 import { RenderCategories } from "./_components/RenderCategories";
 
 export const metadata: Metadata = {
