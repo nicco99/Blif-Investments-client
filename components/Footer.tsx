@@ -62,24 +62,26 @@ export const Footer = () => {
             </div>
           </div>
           <div className="flex space-y-5 md:space-y-0 justify-center w-full mt-20">
-            <div className="relative flex flex-wrap items-center gap-y-3 gap-x-10">
+            <div className="flex flex-wrap items-center gap-y-3 gap-x-10">
               <Link href="#">
                 <Image src="/facebook.svg" alt="" width={30} height={30} />
+                <span className="sr-only">Facebook</span>
               </Link>
               <Link href="#">
                 <Image src="/x.svg" alt="" width={30} height={30} />
+                <span className="sr-only">X</span>
               </Link>
               <Link href="#">
                 <Image src="/instagram.svg" alt="" width={30} height={30} />
+                <span className="sr-only">Instagram</span>
               </Link>
               <Link href="#">
                 <Image src="/pinterest.svg" alt="" width={30} height={30} />
+                <span className="sr-only">Pinterest</span>
               </Link>
               <Link href="#">
                 <Image src="/whatsapp.svg" alt="" width={30} height={30} />
-              </Link>
-              <Link href="https://github.com/wvkong" target="_blank" className="absolute left-full cursor-default text-xl text-transparent">
-                J
+                <span className="sr-only">WhatsApp</span>
               </Link>
             </div>
           </div>

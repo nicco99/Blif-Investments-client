@@ -20,7 +20,6 @@ type Props = {
 
 export const PlanCard = ({ aspect, plan }: Props) => {
   const planPrice = formattedPrice(plan.price);
-  // const reversedImages = plan.images.toReversed()
   return (
     <div className="flex flex-col group lg:hover:drop-shadow-xl lg:hover:-translate-y-2 transition-all ease-in-out duration-500">
       <div className="relative">
@@ -32,15 +31,16 @@ export const PlanCard = ({ aspect, plan }: Props) => {
             )}
           >
             <Image
-              src={`${process.env.API_URL!}/${plan.images[0].image_path}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan.images[0].image_path}`}
               alt="Plan"
               fill
+              priority
               sizes="50vw"
               quality={30}
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-700"
             />
             <Image
-              src={`${process.env.API_URL!}/${plan.images[2].image_path}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan.images[2].image_path}`}
               alt="Plan"
               fill
               sizes="50vw"

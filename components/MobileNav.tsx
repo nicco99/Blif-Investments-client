@@ -11,7 +11,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
-import { Logo } from "./Logo";
 
 export const MobileNav = () => {
   return (
@@ -24,17 +23,49 @@ export const MobileNav = () => {
         className="w-full mr-20 max-w-[90%] sm:max-w-[60%] mx-auto rounded-lg"
       >
         <SheetHeader>
-          <SheetTitle className="flex justify-center">
-            <Logo />
+          <SheetTitle className="sr-only">
+            Menu
           </SheetTitle>
-          <SheetDescription className="flex flex-col gap-y-6">
-            <Link href="/collections" className="text-gray-700 hover:text-black font-semibold">Collections</Link>
-            <Link href="/plans" className="text-gray-700 hover:text-black font-semibold">Plans</Link>
-            <Link href="/about" className="text-gray-700 hover:text-black font-semibold">About</Link>
-            <Link href="/contact" className="text-gray-700 hover:text-black font-semibold">Contact Us</Link>
-          </SheetDescription>
+          <SheetDescription></SheetDescription>
         </SheetHeader>
-        <SheetFooter className="mt-24 mb-5">
+        <div className="flex flex-col gap-y-6 h-full items-center">
+          <Link
+            prefetch={false}
+            href="/"
+            className="text-gray-700 hover:text-black font-semibold"
+          >
+            Home
+          </Link>
+          <Link
+            prefetch={false}
+            href="/collections"
+            className="text-gray-700 hover:text-black font-semibold"
+          >
+            Collections
+          </Link>
+          <Link
+            prefetch={false}
+            href="/plans"
+            className="text-gray-700 hover:text-black font-semibold"
+          >
+            Plans
+          </Link>
+          <Link
+            prefetch={false}
+            href="/about"
+            className="text-gray-700 hover:text-black font-semibold"
+          >
+            About
+          </Link>
+          <Link
+            prefetch={false}
+            href="/contact"
+            className="text-gray-700 hover:text-black font-semibold"
+          >
+            Contact Us
+          </Link>
+        </div>
+        <SheetFooter className="mt-10 mb-5">
           <div className="flex space-x-10 mx-auto">
             <Link href="#">
               <Image src="/facebook.svg" alt="" width={20} height={20} />

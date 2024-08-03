@@ -1,27 +1,41 @@
 import { Settings2 } from "lucide-react";
 
-import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 import { PlanFilters } from "./PlanFilters";
+import { PlanSort } from "./PlanSort";
 
 export const FloatingFilter = () => {
   return (
     <div className="sticky lg:hidden bottom-10 z-30">
       <Sheet>
         <SheetTrigger>
-          <Button className="rounded-full py-7 px-8 flex items-center justify-center gap-x-3 bg-black">
-            <Settings2 className="h-5 w-5" />
-            Filter and sort
-          </Button>
+          <div className="rounded-full py-4 px-6 flex items-center justify-center gap-x-3 bg-black">
+            <Settings2 className="h-5 w-5 text-white" />
+            <span className="text-white">Filter and sort</span>
+          </div>
         </SheetTrigger>
         <SheetContent
           side="right"
           className="w-full pb-12 mr-20 max-w-[90%] sm:max-w-[60%] mx-auto rounded-lg overflow-y-scroll"
         >
           <SheetHeader className="flex items-center justify-center pb-5 border-b border-gray-400">
-            <span className="font-bold text-xl">Filters</span>
+            <SheetTitle>
+              <span className="font-bold text-xl">Filters</span>
+            </SheetTitle>
+            <SheetDescription>
+            </SheetDescription>
+              <div className="w-full flex justify-center items-center my-3">
+                <PlanSort />
+              </div>
+              <PlanFilters />
           </SheetHeader>
-          <PlanFilters />
         </SheetContent>
       </Sheet>
     </div>

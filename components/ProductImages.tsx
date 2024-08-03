@@ -32,7 +32,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
 
   const imageOnclick = (idx: number) => {
     setIndex(idx);
-    router.replace(`${pathname}?i=${idx}`);
+    router.replace(`${pathname}?i=${idx}`, { scroll: false });
   };
 
   const imageUrl = `${urlPath}/${images[Number(index)].image_path}`;

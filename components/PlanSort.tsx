@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
+import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
@@ -10,8 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { cn } from "@/lib/utils";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const SORT_OPTIONS = [
   {
@@ -42,30 +42,23 @@ export const PlanSort = () => {
   let defaultSort;
   if (
     searchParams.get("sort") === "none" ||
-    searchParams.get("sort") === "name-asc" ||
-    searchParams.get("sort") === "name-desc" ||
-    searchParams.get("sort") === "price-asc" ||
-    searchParams.get("sort") === "price-desc"
+    "name-asc" ||
+    "name-desc" ||
+    "price-asc" ||
+    "price-desc"
   ) {
     defaultSort = searchParams.get("sort");
-  } else {
-    defaultSort = "none";
   }
-  const [sort, setSort] = useState(defaultSort);
+  const [sort, setSort] = useState<string>(defaultSort || "");
 
   const pathname = usePathname();
   const router = useRouter();
 
-  const bdrm = searchParams.get("bdrm");
-  const btrm = searchParams.get("btrm");
-  const flrs = searchParams.get("flrs");
-  const prce = searchParams.get("prce");
-
   useEffect(() => {
-    router.push(
-      `${pathname}?sort=${sort}&bdrm=${bdrm}&btrm=${btrm}&flrs=${flrs}&prce=${prce}`
-    );
-  }, [sort, bdrm, btrm, flrs, prce, pathname, router]);
+    const sizeSearchParams = new URLSearchParams(searchParams);
+    sort ? sizeSearchParams.set("sort", sort) : sizeSearchParams.delete("sort");
+    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
+  }, [sort, pathname, router, searchParams]);
 
   return (
     <div className="flex items-center justify-end max-w-52 w-full">

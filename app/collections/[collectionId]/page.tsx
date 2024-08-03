@@ -13,6 +13,7 @@ import {
 } from "@/hooks/filters";
 import { PlanSort } from "@/components/PlanSort";
 import type { Category, Plan } from "@/types";
+import { PlanNotFound } from "@/components/PlanNotFound";
 
 type Props = {
   params: {
@@ -85,7 +86,7 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
           <div className="relative flex w-full justify-center items-center h-[23.5rem] md:h-[25rem] xl:h-[28rem] overflow-hidden rounded-3xl before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
             <Image
               src={
-                { coverImage } ? `${process.env.API_URL!}/${coverImage}` : plan3
+                { coverImage } ? `${process.env.NEXT_PUBLIC_API_URL!}/${coverImage}` : plan3
               }
               alt=""
               fill
@@ -109,20 +110,24 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
             <div className="sticky top-[95px] hidden lg:flex items-center justify-between z-30 w-full py-3 bg-[#f3f3f3] col-span-4">
               <div className="flex space-x-3">
                 <Settings2 className="h-5 w-5" />
-                <span>Filters</span>
+                <span className="font-bold">Filters</span>
               </div>
               <PlanSort />
             </div>
             <div className="hidden lg:block items-start col-span-1">
-              <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[200px] w-full">
+              <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[160px] w-full">
                 <PlanFilters />
               </div>
             </div>
             <div className="flex flex-col col-span-3">
               <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
-                {filteredPlans?.map((plan: Plan) => (
-                  <PlanCard key={plan.id} plan={plan} />
-                ))}
+                {filteredPlans.length === 0 ? (
+                  <PlanNotFound />
+                ) : (
+                  filteredPlans?.map((plan: Plan) => (
+                    <PlanCard key={plan.id} plan={plan} />
+                  ))
+                )}
               </div>
             </div>
           </div>

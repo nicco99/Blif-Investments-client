@@ -11,6 +11,7 @@ export const Navbar = () => {
   return (
     <nav className="flex items-center gap-x-10">
       <Link
+        prefetch={false}
         href="/collections"
         className={cn(
           "font-bold text-lg hover:text-gray-600",
@@ -21,6 +22,7 @@ export const Navbar = () => {
         Collections
       </Link>
       <Link
+        prefetch={false}
         href="/plans"
         className={cn(
           "font-bold text-lg hover:text-gray-600",
@@ -31,6 +33,7 @@ export const Navbar = () => {
         Plans
       </Link>
       <Link
+        prefetch={false}
         href="/about"
         className={cn(
           "font-bold text-lg hover:text-gray-600",
@@ -41,6 +44,7 @@ export const Navbar = () => {
         About
       </Link>
       <Link
+        prefetch={false}
         href="/contact"
         className={cn(
           "font-bold text-lg hover:text-gray-600 text-nowrap",

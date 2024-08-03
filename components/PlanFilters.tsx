@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import {
   Accordion,
@@ -8,32 +9,31 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "./ui/accordion";
-import { PlanSort } from "./PlanSort";
 import { BEDROOM_DEFAULTS, ProductState } from "@/lib/validators";
 import { Slider } from "./ui/slider";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { formattedPrice } from "@/hooks/filters";
 
 const PRICE_FILTER = [
   { value: [0, 10000000], label: "Any price" },
-  { value: [0, 2500000], label: "Under KSH 2,500,000" },
-  { value: [0, 5000000], label: "Under KSH 5,000,000" },
+  { value: [0, 2500000], label: "Under KES 2,500,000" },
+  { value: [0, 5000000], label: "Under KES 5,000,000" },
 ] as const;
 const DEFAULT_CUSTOM_PRICE = [0, 10000000] as [number, number];
 
 export const PlanFilters = () => {
   const [filter, setFilter] = useState<ProductState>({
-    bdrm: ["1", "2", "3", "4"],
-    btrm: ["1", "2", "3", "4"],
-    flrs: ["1", "2", "3", "4"],
+    bdrm: [],
+    btrm: [],
+    flrs: [],
     prce: { isCustom: false, range: DEFAULT_CUSTOM_PRICE },
   });
 
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  
+
   const applyArrayFilter = ({
     category,
     value,
@@ -58,18 +58,37 @@ export const PlanFilters = () => {
 
   const minPrice = Math.min(filter.prce.range[0], filter.prce.range[1]);
   const maxPrice = Math.max(filter.prce.range[0], filter.prce.range[1]);
+  const disabled =
+    !searchParams.get("bdrm") &&
+    !searchParams.get("btrm") &&
+    !searchParams.get("flrs") &&
+    !searchParams.get("prce");
 
-  const sort = searchParams.get("sort")
-
+  const sizeSearchParams = new URLSearchParams(searchParams);
   const handleApplyFilter = () => {
-    router.push(`${pathname}?sort=${sort}&bdrm=${filter.bdrm}&btrm=${filter.btrm}&flrs=${filter.flrs}&prce=${filter.prce.range}`);
+    filter.bdrm.length > 0
+      ? sizeSearchParams.set("bdrm", filter.bdrm.join(","))
+      : sizeSearchParams.delete("bdrm");
+    filter.btrm.length > 0
+      ? sizeSearchParams.set("btrm", filter.btrm.join(","))
+      : sizeSearchParams.delete("btrm");
+    filter.flrs.length > 0
+      ? sizeSearchParams.set("flrs", filter.flrs.join(","))
+      : sizeSearchParams.delete("flrs");
+    sizeSearchParams.set("prce", filter.prce.range.join(","));
+    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
   };
-  
+
+  const handleClearFilters = () => {
+    sizeSearchParams.delete("bdrm");
+    sizeSearchParams.delete("btrm");
+    sizeSearchParams.delete("flrs");
+    sizeSearchParams.delete("prce");
+    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
+  };
+
   return (
-    <Accordion type="single" className="w-full">
-      <div className="lg:hidden w-full flex justify-center items-center my-3">
-        <PlanSort />
-      </div>
+    <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="bedroom" className="border-b border-gray-400">
         <AccordionTrigger className="font-bold w-full text-start">
           Number of Bedrooms
@@ -205,7 +224,7 @@ export const PlanFilters = () => {
                       ...prev,
                       prce: {
                         isCustom: true,
-                        range: [0, 100],
+                        range: [0, 10000000],
                       },
                     }));
                   }}
@@ -220,14 +239,15 @@ export const PlanFilters = () => {
               <div className="flex justify-between">
                 <p className="font-medium">Price</p>
                 <div className="">
-                  $
                   {filter.prce.isCustom
-                    ? minPrice.toFixed(0)
-                    : filter.prce.range[0].toFixed(0)}{" "}
-                  - $
+                    ? formattedPrice(Number(minPrice.toFixed(0)))
+                    : formattedPrice(
+                        Number(filter.prce.range[0].toFixed(0))
+                      )}{" "}
+                  -{" "}
                   {filter.prce.isCustom
-                    ? maxPrice.toFixed(0)
-                    : filter.prce.range[1].toFixed()}
+                    ? formattedPrice(Number(maxPrice.toFixed(0)))
+                    : formattedPrice(Number(filter.prce.range[1].toFixed()))}
                 </div>
               </div>
               <Slider
@@ -252,15 +272,25 @@ export const PlanFilters = () => {
                 min={DEFAULT_CUSTOM_PRICE[0]}
                 max={DEFAULT_CUSTOM_PRICE[1]}
                 defaultValue={DEFAULT_CUSTOM_PRICE}
-                step={1000000}
+                step={250000}
               />
             </li>
           </ul>
         </AccordionContent>
       </AccordionItem>
-      <Button className="w-full mt-10" onClick={handleApplyFilter}>
-        Apply Filter
-      </Button>
+      <div className="flex mt-10 gap-x-2">
+        <Button
+          variant="destructive"
+          disabled={disabled}
+          onClick={handleClearFilters}
+          className="w-full disabled:opacity-30"
+        >
+          Clear Filters
+        </Button>
+        <Button className="w-full" onClick={handleApplyFilter}>
+          Apply Filters
+        </Button>
+      </div>
     </Accordion>
   );
 };

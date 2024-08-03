@@ -1,11 +1,13 @@
 import { cache } from "react";
 import axios from "axios";
 
-export const URL: string = process.env.API_URL!;
+export const URL: string = process.env.NEXT_PUBLIC_API_URL!;
 
 export const getPlans = cache(async () => {
   try {
-    const { plans } = await axios.get(`${URL}/plans`).then((res) => res.data);
+    const { plans } = await axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/plans`)
+      .then((res) => res.data);
     return plans;
   } catch (error) {
     console.log("[Get Plans Error]", error);
@@ -26,7 +28,7 @@ export const getPlanWithId = cache(async (planId: number) => {
 export const getCategories = cache(async () => {
   try {
     const { categories } = await axios
-      .get(`${URL}/categories`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/categories`)
       .then((res) => res.data);
     return categories;
   } catch (error) {
