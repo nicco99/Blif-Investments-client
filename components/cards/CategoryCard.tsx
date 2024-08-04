@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useQuery } from "@tanstack/react-query";
 
 import { imageFromPlanToCategory } from "@/hooks/filters";
 import type { Category } from "@/types";
@@ -12,24 +9,18 @@ type Props = {
   category: Category;
 };
 
-export const CategoryCard = ({ category }: Props) => {
-  const { data } = useQuery({
-    queryKey: ["image", category.id],
-    queryFn: async () => {
-      let image;
-      image = await imageFromPlanToCategory(category.id);
-      return image;
-    },
-  });
+export const CategoryCard = async ({ category }: Props) => {
+  const image = await imageFromPlanToCategory(category.id);
+  
   return (
     <Link href={`/collections/${category.id}`} prefetch={false}>
       <div className="relative aspect-video group rounded-lg overflow-hidden hover:z-20 lg:hover:drop-shadow-xl transition-all ease-in-out duration-700 cursor-pointer before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
-        {data ? (
+        {image ? (
           <Image
-            src={`${process.env.NEXT_PUBLIC_API_URL}/${data}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`}
             alt="Plan"
             fill
-            sizes="30vw"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
             quality={30}
             className="object-cover group-hover:scale-110 transition ease-in-out duration-700 z-[1]"
           />

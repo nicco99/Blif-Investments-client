@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
 
-import { RenderPlans } from "./_components/RenderPlans";
+import { PlanCard } from "@/components/cards/PlanCard";
+import { getPlans } from "@/lib/api";
+import { Plan } from "@/types";
+
 import { PlansPagination } from "./_components/PlansPagination";
 
 export const metadata: Metadata = {
@@ -27,8 +25,8 @@ export const metadata: Metadata = {
   },
 };
 
-const PlansPage = () => {
-  const queryClient = new QueryClient();
+const PlansPage = async () => {
+  const plans = await getPlans();
   return (
     <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
@@ -37,9 +35,9 @@ const PlansPage = () => {
             All plans
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-            <HydrationBoundary state={dehydrate(queryClient)}>
-              <RenderPlans />
-            </HydrationBoundary>
+            {plans?.map((plan: Plan) => (
+              <PlanCard key={plan.id} plan={plan} />
+            ))}
           </div>
           <PlansPagination />
         </div>
