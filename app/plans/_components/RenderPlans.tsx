@@ -8,7 +8,7 @@ import { Plan } from "@/types";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const RenderPlans = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["plans"],
     queryFn: getPlans,
   });
@@ -27,6 +27,11 @@ export const RenderPlans = () => {
       </>
     );
   }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <>
       {data?.map((plan: Plan) => (
