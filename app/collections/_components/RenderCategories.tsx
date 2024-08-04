@@ -25,9 +25,7 @@ export const RenderCategories = () => {
     );
   }
   if (isError) {
-    return (
-      <div>Error: {error.message}</div>
-    )
+    return <div>Error: {error.message}</div>;
   }
   return (
     <>
