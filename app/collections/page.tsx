@@ -1,11 +1,8 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
 import type { Metadata } from "next";
 
-import { RenderCategories } from "./_components/RenderCategories";
+import { CategoryCard } from "@/components/cards/CategoryCard";
+import { getCategories } from "@/lib/api";
+import { Category } from "@/types";
 
 export const metadata: Metadata = {
   title: "Collections",
@@ -26,8 +23,8 @@ export const metadata: Metadata = {
   },
 };
 
-const PlansPage = () => {
-  const queryClient = new QueryClient();
+const PlansPage = async () => {
+  const categories = await getCategories();
   return (
     <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
@@ -36,9 +33,9 @@ const PlansPage = () => {
             All collections
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <HydrationBoundary state={dehydrate(queryClient)}>
-              <RenderCategories />
-            </HydrationBoundary>
+            {categories?.map((category: Category) => (
+              <CategoryCard key={category.id} category={category} />
+            ))}
           </div>
         </div>
       </div>
