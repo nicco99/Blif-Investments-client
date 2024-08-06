@@ -8,7 +8,7 @@ import grid9 from "@/public/grid9.jpg";
 export const metadata: Metadata = {
   title: "About",
   openGraph: {
-    title: 'About | Blif Investment',
+    title: "About | Blif Investment",
     type: "article",
     locale: "en-US",
     url: "https://blifinvestment.com/about",
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
         url: "https://blifinvestment.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "About | Blif Investment"
-      }
-    ]
-  }
+        alt: "About | Blif Investment",
+      },
+    ],
+  },
 };
 
 const ContactUsPage = () => {
@@ -46,9 +46,9 @@ const ContactUsPage = () => {
                 and building of affordable modern homes and residential
                 developments.
                 <br />
-                We offer services in Construction Management,
-                Architectural design, Interior design, structural designs,
-                project management and construction services.
+                We offer services in Construction Management, Architectural
+                design, Interior design, structural designs, project management
+                and construction services.
               </p>
             </div>
             <hr className="h-0.5 bg-gray-300 my-10 lg:my-12" />
