@@ -65,6 +65,8 @@ export const PlanFilters = () => {
     !searchParams.get("flrs") &&
     !searchParams.get("prce");
 
+  const disableApplyFilters = filter.bdrm.length === 0 && filter.btrm.length === 0 && filter.flrs.length === 0 && !filter.prce.isCustom
+
   const sizeSearchParams = new URLSearchParams(searchParams);
   const handleApplyFilter = () => {
     filter.bdrm.length > 0
@@ -289,7 +291,7 @@ export const PlanFilters = () => {
         >
           Clear Filters
         </Button>
-        <Button className="w-full" onClick={handleApplyFilter}>
+        <Button className="w-full" disabled={disableApplyFilters} onClick={handleApplyFilter}>
           Apply Filters
         </Button>
       </div>

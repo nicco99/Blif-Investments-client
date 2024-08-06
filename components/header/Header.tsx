@@ -1,8 +1,7 @@
-import { Search } from "lucide-react";
-
 import { Navbar } from "./Navbar";
 import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
+import { SearchBar } from "./SearchBar";
 
 export const Header = () => {
   return (
@@ -20,9 +19,7 @@ export const Header = () => {
             <Navbar />
           </div>
           {/* ICONS */}
-          <div className="flex gap-x-3 lg:gap-x-6 justify-self-end">
-            <Search />
-          </div>
+          <SearchBar />
         </div>
       </div>
     </header>

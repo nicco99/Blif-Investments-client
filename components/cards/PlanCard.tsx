@@ -21,7 +21,7 @@ type Props = {
 export const PlanCard = ({ aspect, plan }: Props) => {
   const planPrice = formattedPrice(plan.price);
   return (
-    <div className="flex flex-col group lg:hover:drop-shadow-xl lg:hover:-translate-y-2 transition-all ease-in-out duration-500">
+    <div className="flex flex-col group lg:hover:drop-shadow-xl border border-slate-300 rounded-lg lg:hover:-translate-y-2 transition-all ease-in-out duration-500">
       <div className="relative">
         <Link href={`/plans/${plan.id}`} prefetch={false}>
           <div
@@ -35,7 +35,9 @@ export const PlanCard = ({ aspect, plan }: Props) => {
               alt="Plan"
               fill
               priority
-              sizes="50vw"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
               quality={30}
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-700"
             />
@@ -43,7 +45,9 @@ export const PlanCard = ({ aspect, plan }: Props) => {
               src={`${process.env.NEXT_PUBLIC_API_URL}/${plan.images[2].image_path}`}
               alt="Plan"
               fill
-              sizes="50vw"
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
               quality={30}
               className="absolute object-cover z-[1]"
             />

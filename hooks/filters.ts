@@ -125,8 +125,8 @@ export const formattedPrice = (number: number) => {
 };
 
 export const formattedPrice2 = (amount: string) => {
-  let numberStr = amount.replace(/KES\s|,/g, "");
-  let number = parseFloat(numberStr);
+  const numberStr = amount.replace(/KES\s|,/g, "");
+  const number = parseFloat(numberStr);
   let newNumber;
   switch (true) {
     case number >= 1000000:
@@ -141,32 +141,20 @@ export const formattedPrice2 = (amount: string) => {
   return "KES " + newNumber;
 };
 
-export const handleSort = (plans: Plan[], value: string) => {
-  switch (value) {
-    case "name-asc":
-      plans.toSorted((a, b) => {
-        if (a.plan_name < b.plan_name) {
-          return -1;
-        }
-        if (a.plan_name > b.plan_name) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    case "name-desc":
-      plans.toSorted((a, b) => {
-        if (a.plan_name > b.plan_name) {
-          return -1;
-        }
-        if (a.plan_name < b.plan_name) {
-          return 1;
-        }
-        return 0;
-      });
-      break;
-    default:
-      plans;
-      break;
+export const searchPlanWithName = async (search: string | undefined) => {
+  if (search) {
+    const plans = await getPlans();
+    // const searchedPlans: Plan[] | undefined = plans.filter((plan: Plan) =>
+    //   plan.plan_name.toLowerCase().includes(search.toLowerCase())
+    // );
+    const keys = ["plan_name", "description"];
+    const searchedPlans: Plan[] = plans.filter((plan: Plan) =>
+      keys.some(
+        // @ts-ignore
+        (key) => plan[key] && plan[key].toString().toLowerCase().includes(search.toLowerCase())
+      )
+    );
+
+    return searchedPlans;
   }
 };
