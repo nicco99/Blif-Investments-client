@@ -1,24 +1,27 @@
 import { getPlans } from "@/lib/api";
-import type { Plan } from "@/types";
-import { number } from "zod";
+import type { Filters, Plan } from "@/types";
 
-type Filters = {
-  bdrm: string;
-  btrm: string;
-  flrs: string;
-  prce: string;
-};
-
-export const filterPlansWithCategoryId = async (
-  categoryId: number,
-  filters: Filters,
-  sort?: string
-) => {
+export const filterPlansWithCategoryId = async ({
+  categoryId,
+  filters,
+  sort,
+}: {
+  categoryId?: number;
+  filters?: Filters;
+  sort?: string;
+}) => {
   const plans = await getPlans();
 
-  const filteredCategoryPlans = plans.filter(
-    (plan: Plan) => plan.category_id === Number(categoryId)
-  );
+  let filteredCategoryPlans: Plan[];
+
+  if (categoryId) {
+    filteredCategoryPlans = plans.filter(
+      (plan: Plan) => plan.category_id === Number(categoryId)
+    );
+  } else {
+    filteredCategoryPlans = plans;
+  }
+
   let sortedPlans;
 
   const convert = (value: string) => value?.split(",").map(Number);
@@ -50,7 +53,7 @@ export const filterPlansWithCategoryId = async (
     });
   };
 
-  if (filters.bdrm || filters.btrm || filters.flrs || filters.prce) {
+  if (filters?.bdrm || filters?.btrm || filters?.flrs || filters?.prce) {
     sortedPlans = filterPlans(filters);
   } else {
     sortedPlans = filteredCategoryPlans;
@@ -67,21 +70,18 @@ export const filterPlansWithCategoryId = async (
   };
 
   if (sort) {
-    if (sort === "name-asc") {
+    const sortOptions = {
+      "name-asc": { key: "plan_name", asc: true },
+      "name-desc": { key: "plan_name", asc: false },
+      "price-asc": { key: "price", asc: true },
+      "price-desc": { key: "price", asc: false },
+    } as const;
+
+    const option = sortOptions[sort as keyof typeof sortOptions];
+
+    if (option) {
       sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
-        compare(a, b, "plan_name", true)
-      );
-    } else if (sort === "name-desc") {
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
-        compare(a, b, "plan_name", false)
-      );
-    } else if (sort === "price-asc") {
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
-        compare(a, b, "price", true)
-      );
-    } else if (sort === "price-desc") {
-      sortedPlans = sortedPlans.toSorted((a: Plan, b: Plan) =>
-        compare(a, b, "price", false)
+        compare(a, b, option.key, option.asc)
       );
     }
   }
@@ -144,14 +144,15 @@ export const formattedPrice2 = (amount: string) => {
 export const searchPlanWithName = async (search: string | undefined) => {
   if (search) {
     const plans = await getPlans();
-    // const searchedPlans: Plan[] | undefined = plans.filter((plan: Plan) =>
-    //   plan.plan_name.toLowerCase().includes(search.toLowerCase())
-    // );
-    const keys = ["plan_name", "description"];
+    const keys = ["plan_name", "description"] as const;
     const searchedPlans: Plan[] = plans.filter((plan: Plan) =>
       keys.some(
-        // @ts-ignore
-        (key) => plan[key] && plan[key].toString().toLowerCase().includes(search.toLowerCase())
+        (key) =>
+          plan[key as keyof Plan] &&
+          plan[key as keyof Plan]
+            .toString()
+            .toLowerCase()
+            .includes(search.toLowerCase())
       )
     );
 

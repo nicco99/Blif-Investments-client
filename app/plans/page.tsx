@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 
-import { PlanCard } from "@/components/cards/PlanCard";
-import { getPlans } from "@/lib/api";
-import { Plan } from "@/types";
-
 import { PlansPagination } from "./_components/PlansPagination";
+import ShowPlans from "@/components/filters/ShowPlans";
+import { filterPlansWithCategoryId } from "@/hooks/filters";
+import { FloatingFilter } from "@/components/filters/FloatingFilter";
 
 export const metadata: Metadata = {
   title: "Plans",
@@ -25,23 +24,38 @@ export const metadata: Metadata = {
   },
 };
 
-const PlansPage = async () => {
-  const plans = await getPlans();
+type Props = {
+  searchParams: {
+    sort: "none" | "name-asc" | "name-desc" | "price-asc" | "price-desc";
+    bdrm: string;
+    btrm: string;
+    flrs: string;
+    prce: string;
+  };
+};
+
+const PlansPage = async ({ searchParams }: Props) => {
+  const filters = {
+    bdrm: searchParams?.bdrm,
+    btrm: searchParams?.btrm,
+    flrs: searchParams?.flrs,
+    prce: searchParams?.prce,
+  };
+  const sort = searchParams?.sort;
+
+  const plans = await filterPlansWithCategoryId({ filters, sort });
   return (
-    <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
-      <div className="px-5 md:px-8 lg:px-12">
-        <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
+    <section className="relative flex flex-col items-center bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
+      <div className="px-5 md:px-8 lg:px-12 w-full">
+        <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <h1 className="font-bold text-4xl md:text-5xl text-center">
             All plans
           </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-            {plans?.map((plan: Plan) => (
-              <PlanCard key={plan.id} plan={plan} />
-            ))}
-          </div>
+          <ShowPlans plans={plans} />
           <PlansPagination />
         </div>
       </div>
+      <FloatingFilter />
     </section>
   );
 };

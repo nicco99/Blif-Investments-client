@@ -31,3 +31,10 @@ export type Image = {
   id: number;
   image_path: string;
 };
+
+export type Filters = {
+  bdrm: string;
+  btrm: string;
+  flrs: string;
+  prce: string;
+};

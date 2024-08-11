@@ -156,7 +156,7 @@ const PlanIdPage = async ({ params }: Props) => {
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-5">
               Features included
             </h1>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 bg-white w-full rounded-lg lg:rounded-3xl gap-y-6 gap-x-10 px-10 py-6 sm:py-8 md:py-10 lg:py-12">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 w-full gap-y-6 gap-x-10 px-10 py-6 sm:py-8 md:py-10 lg:py-12">
               {plan.features.map((feature: Feature) => (
                 <li
                   key={feature.id}
