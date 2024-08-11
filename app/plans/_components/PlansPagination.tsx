@@ -13,7 +13,7 @@ import {
 export const PlansPagination = () => {
   
   return (
-    <div className="w-full">
+    <div className="w-full mb-6 lg:mb-0">
       <Pagination>
         <PaginationContent>
           <PaginationItem>

@@ -22,17 +22,19 @@ type Props = {
 
 export const ProductImages = ({ images, urlPath }: Props) => {
   const searchParams = useSearchParams();
-  const [index, setIndex] = useState(Number(searchParams.get("i")));
   const pathname = usePathname();
   const router = useRouter();
+  const [index, setIndex] = useState(Number(searchParams.get("img")));
 
   useEffect(() => {
-    setIndex(Number(searchParams.get("i")));
+    setIndex(Number(searchParams.get("img")));
   }, [searchParams]);
 
   const imageOnclick = (idx: number) => {
     setIndex(idx);
-    router.replace(`${pathname}?i=${idx}`, { scroll: false });
+    const sizeSearchParams = new URLSearchParams(searchParams);
+    sizeSearchParams.set("img", String(idx));
+    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: true });
   };
 
   const imageUrl = `${urlPath}/${images[Number(index)].image_path}`;

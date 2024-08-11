@@ -1,19 +1,15 @@
 import Image from "next/image";
-import { Settings2 } from "lucide-react";
 import type { Metadata } from "next";
 
 import plan3 from "@/public/plan3.jpg";
-import { PlanCard } from "@/components/cards/PlanCard";
-import { PlanFilters } from "./_components/PlanFilters";
-import { FloatingFilter } from "./_components/FloatingFilter";
+import { FloatingFilter } from "@/components/filters/FloatingFilter";
 import { getCategoryWithId } from "@/lib/api";
 import {
   filterPlansWithCategoryId,
   imageFromPlanToCategory,
 } from "@/hooks/filters";
-import { PlanSort } from "./_components/PlanSort";
-import type { Category, Plan } from "@/types";
-import { PlanNotFound } from "@/components/PlanNotFound";
+import type { Category } from "@/types";
+import ShowPlans from "@/components/filters/ShowPlans";
 
 type Props = {
   params: {
@@ -65,17 +61,19 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
     flrs: searchParams?.flrs,
     prce: searchParams?.prce,
   };
+  const sort = searchParams?.sort;
+
   const categoryData = getCategoryWithId(params.collectionId);
-  const filteredPlansData = filterPlansWithCategoryId(
-    params.collectionId,
+  const plansData = filterPlansWithCategoryId({
+    categoryId: params.collectionId,
     filters,
-    searchParams?.sort
-  );
+    sort,
+  });
   const coverImageData = imageFromPlanToCategory(params.collectionId);
 
-  const [category, filteredPlans, coverImage] = await Promise.all([
+  const [category, plans, coverImage] = await Promise.all([
     categoryData,
-    filteredPlansData,
+    plansData,
     coverImageData,
   ]);
 
@@ -103,36 +101,7 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
               </p>
             </div>
           </div>
-          <div className="w-full flex flex-col lg:grid grid-cols-4 lg:gap-x-12">
-            <p className="lg:hidden text-center text-sm md:text-base">
-              {`${filteredPlans?.length} product${
-                filteredPlans?.length === 1 ? "" : "s"
-              }`}
-            </p>
-            <div className="sticky top-[95px] hidden lg:flex items-center justify-between z-30 w-full py-3 bg-[#f3f3f3] col-span-4">
-              <div className="flex space-x-3">
-                <Settings2 className="h-5 w-5" />
-                <span className="font-bold">Filters</span>
-              </div>
-              <PlanSort />
-            </div>
-            <div className="hidden lg:block items-start col-span-1">
-              <div className="flex flex-col gap-y-6 lg:gap-y-8 sticky top-[160px] w-full">
-                <PlanFilters />
-              </div>
-            </div>
-            <div className="flex flex-col col-span-3">
-              <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-x-5 gap-y-8 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
-                {filteredPlans.length === 0 ? (
-                  <PlanNotFound />
-                ) : (
-                  filteredPlans?.map((plan: Plan) => (
-                    <PlanCard key={plan.id} plan={plan} />
-                  ))
-                )}
-              </div>
-            </div>
-          </div>
+          <ShowPlans plans={plans} showPlansCount />
         </div>
       </div>
       <FloatingFilter />

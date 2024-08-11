@@ -38,6 +38,8 @@ const SORT_OPTIONS = [
 
 export const PlanSort = () => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
 
   let defaultSort;
   if (
@@ -50,9 +52,6 @@ export const PlanSort = () => {
     defaultSort = searchParams.get("sort");
   }
   const [sort, setSort] = useState<string>(defaultSort || "");
-
-  const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     const sizeSearchParams = new URLSearchParams(searchParams);
