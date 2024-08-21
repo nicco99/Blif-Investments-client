@@ -4,11 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.pexels.com",
-      },
-      {
-        protocol: "http",
-        hostname: "13.37.100.57",
+        hostname: "house-designs-node-backend.onrender.com",
       },
     ],
   },
