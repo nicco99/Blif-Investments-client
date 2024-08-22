@@ -174,7 +174,7 @@ const PlanIdPage = async ({ params }: Props) => {
             </h1>
             <div className="flex overflow-x-scroll no-scrollbar gap-x-3 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
               {filteredPlans.map((plan: Plan) => (
-                <PlanCard key={plan.id} plan={plan} />
+                <PlanCard key={plan.id} aspect plan={plan} />
               ))}
             </div>
           </div>
