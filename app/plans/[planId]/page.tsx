@@ -54,7 +54,7 @@ const PlanIdPage = async ({ params }: Props) => {
   );
 
   return (
-    <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-12">
+    <section className=" pb-8 md:pb-10 lg:pb-12">
       <div className="lg:px-12">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <div className="lg:p-12 lg:rounded-3xl">
@@ -174,7 +174,7 @@ const PlanIdPage = async ({ params }: Props) => {
             </h1>
             <div className="flex overflow-x-scroll no-scrollbar gap-x-3 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
               {filteredPlans.map((plan: Plan) => (
-                <PlanCard key={plan.id} aspect plan={plan} />
+                <PlanCard key={plan.id} plan={plan} />
               ))}
             </div>
           </div>

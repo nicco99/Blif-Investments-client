@@ -13,7 +13,7 @@ export const Logo = () => {
       className="flex items-center cursor-pointer select-none justify-self-center lg:justify-self-start"
       onClick={() => router.push("/")}
     >
-      <Image src={logo} alt="Blif" className="aspect-video object-cover h-16 w-32" />
+      <Image src={logo} priority alt="Blif" className="aspect-video object-cover h-16 w-32" />
     </div>
   );
 };

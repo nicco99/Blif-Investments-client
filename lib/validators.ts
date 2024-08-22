@@ -1,6 +1,20 @@
 import { z } from "zod";
 
 export const BEDROOM_DEFAULTS = ["1", "2", "3", "4"] as const;
+export const NONAME = [
+  {
+    label: "Bedrooms",
+    category: "bdrm",
+  },
+  {
+    label: "Bathrooms",
+    category: "btrm",
+  },
+  {
+    label: "Floors",
+    category: "flrs",
+  },
+] as const;
 
 export const FilterValidator = z.object({
   bdrm: z.array(z.enum(BEDROOM_DEFAULTS)),

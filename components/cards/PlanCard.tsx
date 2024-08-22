@@ -31,7 +31,7 @@ export const PlanCard = ({ aspect, plan }: Props) => {
             )}
           >
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan.images[0].image_path}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan?.images[0]?.image_path}`}
               alt="Plan"
               fill
               priority
@@ -42,7 +42,7 @@ export const PlanCard = ({ aspect, plan }: Props) => {
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-700"
             />
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan.images[2].image_path}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/${plan?.images[2]?.image_path}`}
               alt="Plan"
               fill
               placeholder="blur"

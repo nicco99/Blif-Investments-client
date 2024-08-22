@@ -94,7 +94,7 @@ export const imageFromPlanToCategory = async (categoryId: number) => {
   const plan: Plan = plans.find(
     (plan: Plan) => plan.category_id === Number(categoryId)
   );
-  return plan?.images[1]?.image_path;
+  return plan.images[1]?.image_path;
 };
 
 export const filterPlanFromCategory = async (

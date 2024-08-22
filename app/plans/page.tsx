@@ -45,7 +45,7 @@ const PlansPage = async ({ searchParams }: Props) => {
 
   const plans = await filterPlansWithCategoryId({ filters, sort });
   return (
-    <section className="relative flex flex-col items-center bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
+    <section className="relative flex flex-col items-center  py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12 w-full">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <h1 className="font-bold text-4xl md:text-5xl text-center">
