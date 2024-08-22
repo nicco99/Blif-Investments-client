@@ -18,7 +18,7 @@ export const ScrollableCollections = async () => {
   const slicedCategories = sliceArray(categories, 8);
 
   return (
-    <section className="bg-[#f3f3f3] pt-5 sm:pt-0 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className=" pt-5 sm:pt-0 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">

@@ -37,7 +37,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
     router.replace(`${pathname}?${sizeSearchParams}`, { scroll: true });
   };
 
-  const imageUrl = `${urlPath}/${images[Number(index)].image_path}`;
+  const imageUrl = `${urlPath}/${images[Number(index)]?.image_path}`;
 
   return (
     <div>
@@ -58,7 +58,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
               <ZoomIn className="h-5 w-5" />
             </div>
           </DialogTrigger>
-          <DialogContent className="bg-[#f3f3f3] h-full">
+          <DialogContent className=" h-full">
             <div className="flex items-center justify-center">
               <Image
                 src={imageUrl}

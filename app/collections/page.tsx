@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const PlansPage = async () => {
   const categories = await getCategories();
   return (
-    <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
+    <section className=" py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <h1 className="font-bold text-4xl md:text-5xl text-center">

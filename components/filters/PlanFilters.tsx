@@ -9,7 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BEDROOM_DEFAULTS, ProductState } from "@/lib/validators";
+import { BEDROOM_DEFAULTS, NONAME, ProductState } from "@/lib/validators";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -65,7 +65,11 @@ export const PlanFilters = () => {
     !searchParams.get("flrs") &&
     !searchParams.get("prce");
 
-  const disableApplyFilters = filter.bdrm.length === 0 && filter.btrm.length === 0 && filter.flrs.length === 0 && !filter.prce.isCustom
+  const disableApplyFilters =
+    filter.bdrm.length === 0 &&
+    filter.btrm.length === 0 &&
+    filter.flrs.length === 0 &&
+    !filter.prce.isCustom;
 
   const sizeSearchParams = new URLSearchParams(searchParams);
   const handleApplyFilter = () => {
@@ -87,105 +91,49 @@ export const PlanFilters = () => {
     sizeSearchParams.delete("btrm");
     sizeSearchParams.delete("flrs");
     sizeSearchParams.delete("prce");
-    setFilter(DEFAULT_FILTER)
+    setFilter(DEFAULT_FILTER);
     router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
   };
 
   return (
     <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="bedroom" className="border-b border-gray-400">
-        <AccordionTrigger className="font-bold w-full text-start">
-          Number of Bedrooms
-        </AccordionTrigger>
-        <AccordionContent>
-          <ul className="flex flex-col">
-            {BEDROOM_DEFAULTS.map((value) => (
-              <li key={value} className="flex items-center gap-x-2">
-                <input
-                  type="checkbox"
-                  checked={filter.bdrm.includes(value)}
-                  id={`bdrm-${value}`}
-                  onChange={() => {
-                    applyArrayFilter({
-                      category: "bdrm",
-                      value,
-                    });
-                  }}
-                />
-                <label htmlFor={`bdrm-${value}`} className="text-base">
-                  {value === "1"
-                    ? "1 Bedroom"
-                    : value === "4"
-                    ? `${value}+ Bedrooms`
-                    : `${value} Bedrooms`}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="bathroom" className="border-b border-gray-400">
-        <AccordionTrigger className="font-bold w-full text-start">
-          Number of Bathrooms
-        </AccordionTrigger>
-        <AccordionContent>
-          <ul className="flex flex-col">
-            {BEDROOM_DEFAULTS.map((value) => (
-              <li key={value} className="flex items-center gap-x-2">
-                <input
-                  type="checkbox"
-                  checked={filter.btrm.includes(value)}
-                  id={`btrm-${value}`}
-                  onChange={() => {
-                    applyArrayFilter({
-                      category: "btrm",
-                      value,
-                    });
-                  }}
-                />
-                <label htmlFor={`btrm-${value}`} className="text-base">
-                  {value === "1"
-                    ? "1 Bathroom"
-                    : value === "4"
-                    ? `${value}+ Bathrooms`
-                    : `${value} Bathrooms`}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="floor" className="border-b border-gray-400">
-        <AccordionTrigger className="font-bold w-full text-start">
-          Number of Floors
-        </AccordionTrigger>
-        <AccordionContent>
-          <ul className="flex flex-col">
-            {BEDROOM_DEFAULTS.map((value) => (
-              <li key={value} className="flex items-center gap-x-2">
-                <input
-                  type="checkbox"
-                  checked={filter.flrs.includes(value)}
-                  id={`flrs-${value}`}
-                  onChange={() => {
-                    applyArrayFilter({
-                      category: "flrs",
-                      value,
-                    });
-                  }}
-                />
-                <label htmlFor={`flrs-${value}`} className="text-base">
-                  {value === "1"
-                    ? "1 Floor"
-                    : value === "4"
-                    ? `${value}+ Floors`
-                    : `${value} Floors`}
-                </label>
-              </li>
-            ))}
-          </ul>
-        </AccordionContent>
-      </AccordionItem>
+      {NONAME.map(({ label, category }) => (
+        <AccordionItem
+          key={category}
+          value={category}
+          className="border-b border-gray-400"
+        >
+          <AccordionTrigger className="font-bold w-full text-start">
+            Number of {label}
+          </AccordionTrigger>
+          <AccordionContent>
+            <ul className="flex flex-col">
+              {BEDROOM_DEFAULTS.map((value) => (
+                <li key={value} className="flex items-center gap-x-2">
+                  <input
+                    type="checkbox"
+                    checked={filter[category].includes(value)}
+                    id={`${category}-${value}`}
+                    onChange={() => {
+                      applyArrayFilter({
+                        category,
+                        value,
+                      });
+                    }}
+                  />
+                  <label htmlFor={`${category}-${value}`} className="text-base">
+                    {value === "1"
+                      ? `1 ${label.slice(0, -1)}`
+                      : value === "4"
+                      ? `${value}+ ${label}`
+                      : `${value} ${label}`}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+      ))}
       <AccordionItem value="price" className="border-b border-gray-400">
         <AccordionTrigger className="font-bold w-full text-start">
           Price
@@ -284,14 +232,18 @@ export const PlanFilters = () => {
       </AccordionItem>
       <div className="flex mt-10 gap-x-2">
         <Button
-          variant="destructive"
+          variant="secondary"
           disabled={disabled}
           onClick={handleClearFilters}
           className="w-full disabled:opacity-30"
         >
           Clear Filters
         </Button>
-        <Button className="w-full" disabled={disableApplyFilters} onClick={handleApplyFilter}>
+        <Button
+          className="w-full"
+          disabled={disableApplyFilters}
+          onClick={handleApplyFilter}
+        >
           Apply Filters
         </Button>
       </div>

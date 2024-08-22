@@ -1,6 +1,6 @@
 const Loading = () => {
   return (
-    <div className="w-full h-screen bg-[#f3f3f3] flex justify-center items-center">
+    <div className="w-full h-screen  flex justify-center items-center">
       <img
         src="/new-logo.png"
         alt=""

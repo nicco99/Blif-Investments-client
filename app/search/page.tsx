@@ -38,21 +38,21 @@ export async function generateMetadata({
 const SearchPage = async ({ searchParams }: Props) => {
   const searchPlans = await searchPlanWithName(searchParams?.search);
   return (
-    <section className="bg-[#f3f3f3] py-8 md:py-10 lg:py-12 xl:py-16">
+    <section className="py-8 md:py-10 lg:py-12 xl:py-16">
       <div className="px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <SearchInput />
           {!searchPlans ? (
-            <div className="w-full flex items-center justify-center py-12">
+            <div className="flex items-center justify-center w-full py-12">
               Please type a keyword or phrase into the search bar to begin your
               search:
             </div>
           ) : searchPlans.length === 0 ? (
-            <div className="w-full flex items-center justify-center py-12">
+            <div className="flex items-center justify-center w-full py-12">
               No results could be found.
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
               {searchPlans?.map((plan: Plan) => (
                 <PlanCard key={plan.id} plan={plan} />
               ))}

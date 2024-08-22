@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const ContactUsPage = () => {
   return (
-    <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-12 xl:pb-16">
+    <section className="pb-8 md:pb-10 lg:pb-12 xl:pb-16">
       <div className="">
         <div className="flex flex-col w-full gap-y-5 sm:gap-y-8 md:gap-y-10 lg:gap-y-12">
           <div className="relative flex flex-col justify-center items-center max-h-[22rem] overflow-hidden before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
@@ -39,7 +39,7 @@ const ContactUsPage = () => {
             />
           </div>
           <div className="px-5 md:px-8 lg:px-12 max-w-[1600px] mx-auto">
-            <div className="flex flex-col gap-y-4 md:gap-y-6 text-center md:max-w-xl mx-auto">
+            <div className="flex flex-col mx-auto text-center gap-y-4 md:gap-y-6 md:max-w-xl">
               <span className="text-2xl font-bold">About Us</span>
               <p className="sm:text-lg">
                 Blif investment is a Construction Management firm doing design
@@ -63,9 +63,9 @@ const ContactUsPage = () => {
                     className="rounded-xl lg:rounded-3xl lg:rounded-br-none"
                   />
                 </div>
-                <div className="flex flex-col justify-center gap-y-4 lg:gap-y-6 lg:w-1/2 mx-auto text-center">
-                  <h3 className="font-bold text-2xl">Our Services</h3>
-                  <ul className="space-y-3 max-w-sm mx-auto">
+                <div className="flex flex-col justify-center mx-auto text-center gap-y-4 lg:gap-y-6 lg:w-1/2">
+                  <h3 className="text-2xl font-bold">Our Services</h3>
+                  <ul className="max-w-sm mx-auto space-y-3">
                     <li className="flex flex-col">
                       <span className="font-bold">Architectural Design</span>
                       <p>
@@ -112,9 +112,9 @@ const ContactUsPage = () => {
                     className="rounded-xl lg:rounded-3xl lg:rounded-tl-none"
                   />
                 </div>
-                <div className="flex flex-col justify-center gap-y-4 lg:gap-y-6 lg:w-1/2 mx-auto text-center">
-                  <h3 className="font-bold text-2xl">Why Choose Us?</h3>
-                  <ul className="space-y-3 max-w-sm mx-auto">
+                <div className="flex flex-col justify-center mx-auto text-center gap-y-4 lg:gap-y-6 lg:w-1/2">
+                  <h3 className="text-2xl font-bold">Why Choose Us?</h3>
+                  <ul className="max-w-sm mx-auto space-y-3">
                     <li className="flex flex-col">
                       <span className="font-bold">Personalized Solutions</span>
                       <p>
@@ -140,8 +140,8 @@ const ContactUsPage = () => {
               </div>
               <hr className="h-0.5 bg-gray-300 my-10" />
             </div>
-            <div className="max-w-lg mx-auto w-full py-2 lg:pt-6">
-              <p className="text-center text-xl lg:text-2xl">
+            <div className="w-full max-w-lg py-2 mx-auto lg:pt-6">
+              <p className="text-xl text-center lg:text-2xl">
                 Explore our portfolio and discover how we can transform your
                 space with innovative design and expert management.
               </p>

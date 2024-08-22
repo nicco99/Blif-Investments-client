@@ -18,7 +18,7 @@ export const ScrollablePlans = async () => {
   const slicedPlans = sliceArray(plans, 8);
   const mobileSlicedPlans = sliceArray(plans, 3);
   return (
-    <section className="bg-[#f3f3f3] pb-8 md:pb-10 lg:pb-0">
+    <section className=" pb-8 md:pb-10 lg:pb-0">
       <div className="px-3 sm:px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-12 max-w-[1600px] mx-auto">
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">
@@ -32,7 +32,7 @@ export const ScrollablePlans = async () => {
               </p>
             </div>
             <div className="flex lg:items-end">
-              <Link
+            <Link
                 prefetch={false}
                 href="/plans"
                 className="flex items-center gap-x-3 group text-xs sm:text-sm hover:underline hover:underline-offset-4 transition-all ease-in-out duration-700"
@@ -49,7 +49,11 @@ export const ScrollablePlans = async () => {
               {slicedPlans.map((plan: Plan) => (
                 <CarouselItem
                   key={plan.id}
-                  className="sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"
+                  className={
+                    slicedPlans.length === 1
+                      ? "w-full" // Full width when there's only one plan
+                      : "sm:basis-1/2 md:basis-5/12 lg:basis-1/3 xl:basis-1/4"
+                  }
                 >
                   <PlanCard plan={plan} />
                 </CarouselItem>

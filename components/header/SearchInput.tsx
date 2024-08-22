@@ -10,7 +10,7 @@ export const SearchInput = () => {
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const debouncedSearch = useDebounce(value, 500);
+  const debouncedSearch = useDebounce(value);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,9 +31,9 @@ export const SearchInput = () => {
   }, [debouncedSearch, router, pathname, sizeSearchParams]);
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="flex items-center justify-center border-b-2 border-slate-300 px-2 py-2 max-w-lg">
-        <Search className="h-10 w-10 mr-2 text-gray-400 group-hover:text-white transition-all ease-in-out duration-300" />
+    <div className="flex justify-center w-full">
+      <div className="flex items-center justify-center max-w-lg px-2 py-2 border-b-2 border-slate-300">
+        <Search className="w-10 h-10 mr-2 text-gray-400 transition-all duration-300 ease-in-out group-hover:text-white" />
         <input
           ref={inputRef}
           onChange={(e) => {
@@ -42,7 +42,7 @@ export const SearchInput = () => {
           }}
           value={value}
           maxLength={50}
-          className="w-full border-none bg-transparent text-xl py-3 text-gray-600 outline-none placeholder:text-gray-400 md:text-2xl lg:text-4xl"
+          className="w-full py-3 text-xl text-gray-600 bg-transparent border-none outline-none placeholder:text-gray-400 md:text-2xl lg:text-4xl"
           placeholder="What are you looking for?"
         />
       </div>

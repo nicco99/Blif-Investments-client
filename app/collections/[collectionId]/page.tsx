@@ -78,7 +78,7 @@ const CollectionIdPage = async ({ params, searchParams }: Props) => {
   ]);
 
   return (
-    <section className="bg-[#f3f3f3] flex flex-col justify-center items-center py-8 md:py-10 lg:py-12">
+    <section className=" flex flex-col justify-center items-center py-8 md:py-10 lg:py-12">
       <div className="px-5 md:px-8 lg:px-12 mb-5 lg:mb-0 w-full">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <div className="relative flex w-full justify-center items-center h-[23.5rem] md:h-[25rem] xl:h-[28rem] overflow-hidden rounded-3xl before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
