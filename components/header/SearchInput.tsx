@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -15,7 +15,10 @@ export const SearchInput = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const sizeSearchParams = new URLSearchParams(searchParams);
+  const sizeSearchParams = useMemo(
+    () => new URLSearchParams(searchParams),
+    [searchParams]
+  );
 
   useEffect(() => {
     inputRef.current?.focus();

@@ -2,30 +2,22 @@
 
 import { Ban } from "lucide-react";
 import { Button } from "./ui/button";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useFilterStore } from "@/store/use-filter-store";
 
 export const PlanNotFound = () => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const sizeSearchParams = new URLSearchParams(searchParams);
+  const { filters, reset } = useFilterStore();
 
   const handleClearFilters = () => {
-    sizeSearchParams.delete("bdrm");
-    sizeSearchParams.delete("btrm");
-    sizeSearchParams.delete("flrs");
-    sizeSearchParams.delete("prce");
-    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
+    reset()
   };
   return (
-    <div className="col-span-3 items-center flex flex-col gap-y-3">
-      <Ban className="h-12 w-12 text-gray-600" />
-      <span className="font-bold text-3xl text-gray-600">No Plans</span>
-      {sizeSearchParams.size > 0 && (
+    <div className="flex flex-col items-center col-span-3 gap-y-3">
+      <Ban className="w-12 h-12 text-gray-600" />
+      <span className="text-3xl font-bold text-gray-600">No Plans</span>
+      {!!filters.bdrm[0] || !!filters.btrm[0] || !!filters.flrs[0] && (
         <Button
           variant="destructive"
-          className="rounded-full text-xl py-8 px-10"
+          className="px-10 py-8 text-xl rounded-full"
           onClick={handleClearFilters}
         >
           Clear Filters

@@ -16,6 +16,14 @@ export const NONAME = [
   },
 ] as const;
 
+export const DEFAULT_CUSTOM_PRICE = [0, 10000000] as [number, number];
+export const DEFAULT_FILTER = {
+  bdrm: [],
+  btrm: [],
+  flrs: [],
+  prce: { isCustom: false, range: DEFAULT_CUSTOM_PRICE },
+};
+
 export const FilterValidator = z.object({
   bdrm: z.array(z.enum(BEDROOM_DEFAULTS)),
   btrm: z.array(z.enum(BEDROOM_DEFAULTS)),
