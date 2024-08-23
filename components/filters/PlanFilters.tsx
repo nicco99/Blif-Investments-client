@@ -9,94 +9,82 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { BEDROOM_DEFAULTS, NONAME, ProductState } from "@/lib/validators";
+import {
+  BEDROOM_DEFAULTS,
+  DEFAULT_CUSTOM_PRICE,
+  DEFAULT_FILTER,
+  NONAME,
+} from "@/lib/validators";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { formattedPrice } from "@/hooks/filters";
+import { useFilterStore } from "@/store/use-filter-store";
 
 const PRICE_FILTER = [
   { value: [0, 10000000], label: "Any price" },
   { value: [0, 2500000], label: "Under KES 2,500,000" },
   { value: [0, 5000000], label: "Under KES 5,000,000" },
 ] as const;
-const DEFAULT_CUSTOM_PRICE = [0, 10000000] as [number, number];
-const DEFAULT_FILTER = {
-  bdrm: [],
-  btrm: [],
-  flrs: [],
-  prce: { isCustom: false, range: DEFAULT_CUSTOM_PRICE },
-};
 
 export const PlanFilters = () => {
-  const [filter, setFilter] = useState<ProductState>(DEFAULT_FILTER);
+  const { filters, setFilters, reset } = useFilterStore();
 
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
+  // Local state to hold filter values temporarily
+  const [localFilters, setLocalFilters] = useState(filters);
 
   const applyArrayFilter = ({
     category,
     value,
   }: {
-    category: keyof Omit<typeof filter, "prce">;
+    category: keyof Omit<typeof filters, "prce">;
     value: string;
   }) => {
-    const isFilterApplied = filter[category].includes(value as never);
+    const isFilterApplied = localFilters[category].includes(value as never);
 
-    if (isFilterApplied) {
-      setFilter((prev) => ({
-        ...prev,
-        [category]: prev[category].filter((v) => v !== value),
-      }));
-    } else {
-      setFilter((prev) => ({
-        ...prev,
-        [category]: [...prev[category], value],
-      }));
-    }
+    setLocalFilters({
+      ...localFilters,
+      [category]: isFilterApplied
+        ? localFilters[category].filter((v) => v !== value)
+        : [...localFilters[category], value],
+    });
   };
 
-  const minPrice = Math.min(filter.prce.range[0], filter.prce.range[1]);
-  const maxPrice = Math.max(filter.prce.range[0], filter.prce.range[1]);
+  const minPrice = Math.min(
+    localFilters.prce.range[0],
+    localFilters.prce.range[1]
+  );
+  const maxPrice = Math.max(
+    localFilters.prce.range[0],
+    localFilters.prce.range[1]
+  );
   const disabled =
-    !searchParams.get("bdrm") &&
-    !searchParams.get("btrm") &&
-    !searchParams.get("flrs") &&
-    !searchParams.get("prce");
-
-  const disableApplyFilters =
-    filter.bdrm.length === 0 &&
-    filter.btrm.length === 0 &&
-    filter.flrs.length === 0 &&
-    !filter.prce.isCustom &&
+    filters.bdrm.length === 0 &&
+    filters.btrm.length === 0 &&
+    filters.flrs.length === 0 &&
+    !filters.prce.isCustom &&
     !(
-      filter.prce.range[0] !== DEFAULT_CUSTOM_PRICE[0] ||
-      filter.prce.range[1] !== DEFAULT_CUSTOM_PRICE[1]
+      filters.prce.range[0] !== DEFAULT_CUSTOM_PRICE[0] ||
+      filters.prce.range[1] !== DEFAULT_CUSTOM_PRICE[1]
     );
 
-  const sizeSearchParams = new URLSearchParams(searchParams);
+  const disableApplyFilters =
+    localFilters.bdrm.length === 0 &&
+    localFilters.btrm.length === 0 &&
+    localFilters.flrs.length === 0 &&
+    !localFilters.prce.isCustom &&
+    !(
+      localFilters.prce.range[0] !== DEFAULT_CUSTOM_PRICE[0] ||
+      localFilters.prce.range[1] !== DEFAULT_CUSTOM_PRICE[1]
+    );
+
   const handleApplyFilter = () => {
-    filter.bdrm.length > 0
-      ? sizeSearchParams.set("bdrm", filter.bdrm.join(","))
-      : sizeSearchParams.delete("bdrm");
-    filter.btrm.length > 0
-      ? sizeSearchParams.set("btrm", filter.btrm.join(","))
-      : sizeSearchParams.delete("btrm");
-    filter.flrs.length > 0
-      ? sizeSearchParams.set("flrs", filter.flrs.join(","))
-      : sizeSearchParams.delete("flrs");
-    sizeSearchParams.set("prce", filter.prce.range.join(","));
-    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
+    setFilters(localFilters);
   };
 
   const handleClearFilters = () => {
-    sizeSearchParams.delete("bdrm");
-    sizeSearchParams.delete("btrm");
-    sizeSearchParams.delete("flrs");
-    sizeSearchParams.delete("prce");
-    setFilter(DEFAULT_FILTER);
-    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
+    reset();
+    setLocalFilters(DEFAULT_FILTER);
   };
 
   return (
@@ -116,7 +104,7 @@ export const PlanFilters = () => {
                 <li key={value} className="flex items-center gap-x-2">
                   <input
                     type="checkbox"
-                    checked={filter[category].includes(value)}
+                    checked={localFilters[category].includes(value)}
                     id={`${category}-${value}`}
                     onChange={() => {
                       applyArrayFilter({
@@ -149,19 +137,19 @@ export const PlanFilters = () => {
                 <input
                   type="radio"
                   checked={
-                    !filter.prce.isCustom &&
-                    filter.prce.range[0] === option.value[0] &&
-                    filter.prce.range[1] === option.value[1]
+                    !localFilters.prce.isCustom &&
+                    localFilters.prce.range[0] === option.value[0] &&
+                    localFilters.prce.range[1] === option.value[1]
                   }
                   id={`prce-${i}`}
                   onChange={() => {
-                    setFilter((prev) => ({
-                      ...prev,
+                    setLocalFilters({
+                      ...localFilters,
                       prce: {
                         isCustom: false,
                         range: [...option.value],
                       },
-                    }));
+                    });
                   }}
                 />
                 <label htmlFor={`prce-${i}`} className="text-base">
@@ -173,16 +161,16 @@ export const PlanFilters = () => {
               <div className="flex items-center gap-x-3">
                 <input
                   type="radio"
-                  checked={filter.prce.isCustom}
+                  checked={localFilters.prce.isCustom}
                   id={`prce-${PRICE_FILTER.length}`}
                   onChange={() => {
-                    setFilter((prev) => ({
-                      ...prev,
+                    setLocalFilters({
+                      ...localFilters,
                       prce: {
                         isCustom: true,
                         range: [0, 10000000],
                       },
-                    }));
+                    });
                   }}
                 />
                 <label
@@ -195,34 +183,36 @@ export const PlanFilters = () => {
               <div className="flex justify-between">
                 <p className="font-medium">Price</p>
                 <div className="">
-                  {filter.prce.isCustom
+                  {localFilters.prce.isCustom
                     ? formattedPrice(Number(minPrice.toFixed(0)))
                     : formattedPrice(
-                        Number(filter.prce.range[0].toFixed(0))
+                        Number(localFilters.prce.range[0].toFixed(0))
                       )}{" "}
                   -{" "}
-                  {filter.prce.isCustom
+                  {localFilters.prce.isCustom
                     ? formattedPrice(Number(maxPrice.toFixed(0)))
-                    : formattedPrice(Number(filter.prce.range[1].toFixed()))}
+                    : formattedPrice(
+                        Number(localFilters.prce.range[1].toFixed())
+                      )}
                 </div>
               </div>
               <Slider
-                className={cn({ "opacity-50": !filter.prce.isCustom })}
-                disabled={!filter.prce.isCustom}
+                className={cn({ "opacity-50": !localFilters.prce.isCustom })}
+                disabled={!localFilters.prce.isCustom}
                 onValueChange={(range) => {
                   const [newMin, newMax] = range;
 
-                  setFilter((prev) => ({
-                    ...prev,
+                  setLocalFilters({
+                    ...localFilters,
                     prce: {
                       isCustom: true,
                       range: [newMin, newMax],
                     },
-                  }));
+                  });
                 }}
                 value={
-                  filter.prce.isCustom
-                    ? filter.prce.range
+                  localFilters.prce.isCustom
+                    ? localFilters.prce.range
                     : DEFAULT_CUSTOM_PRICE
                 }
                 min={DEFAULT_CUSTOM_PRICE[0]}

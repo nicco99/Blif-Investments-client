@@ -1,9 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
-
-import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
@@ -11,62 +7,33 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "../ui/select";
+import { useSortStore } from "@/store/use-sort-store";
+import { cn } from "@/lib/utils";
 
 const SORT_OPTIONS = [
-  {
-    name: "None",
-    value: "none",
-  },
-  {
-    name: "Name: A - Z",
-    value: "name-asc",
-  },
-  {
-    name: "Name: Z - A",
-    value: "name-desc",
-  },
-  {
-    name: "Price: Low to High",
-    value: "price-asc",
-  },
-  {
-    name: "Price: High to Low",
-    value: "price-desc",
-  },
+  { value: "none", label: "None" },
+  { value: "price-asc", label: "Price: Low to High" },
+  { value: "price-desc", label: "Price: High to Low" },
+  { value: "name-asc", label: "Name: A-Z" },
+  { value: "name-desc", label: "Name: Z-A" },
 ] as const;
 
 export const PlanSort = () => {
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
+  const { sortBy, setSortBy } = useSortStore();
 
-  let defaultSort;
-  if (
-    searchParams.get("sort") === "none" ||
-    "name-asc" ||
-    "name-desc" ||
-    "price-asc" ||
-    "price-desc"
-  ) {
-    defaultSort = searchParams.get("sort");
-  }
-  const [sort, setSort] = useState<string>(defaultSort || "");
-
-  useEffect(() => {
-    const sizeSearchParams = new URLSearchParams(searchParams);
-    sort ? sizeSearchParams.set("sort", sort) : sizeSearchParams.delete("sort");
-    router.replace(`${pathname}?${sizeSearchParams}`, { scroll: false });
-  }, [sort, pathname, router, searchParams]);
+  const handleApplySort = (value: string) => {
+    setSortBy(value);
+  };
 
   return (
-    <div className="flex items-center justify-end max-w-52 w-full">
+    <div className="flex items-center justify-end w-full max-w-52">
       <span className="font-bold">Sort by:</span>
       <Select
-        value={sort ? sort : "none"}
-        onValueChange={(value) => setSort(value)}
+        value={sortBy ? sortBy : "none"}
+        onValueChange={(value) => handleApplySort(value)}
       >
-        <SelectTrigger className="bg-transparent w-2/3">
+        <SelectTrigger className="w-2/3 bg-transparent">
           <SelectValue placeholder="None" className="text-lg" />
         </SelectTrigger>
         <SelectContent>
@@ -77,10 +44,10 @@ export const PlanSort = () => {
                 value={option.value}
                 className={cn(
                   "text-gray-700",
-                  sort === option.value && "text-black font-semibold"
+                  sortBy === option.value && "text-black font-semibold"
                 )}
               >
-                {option.name}
+                {option.label}
               </SelectItem>
             ))}
           </SelectGroup>

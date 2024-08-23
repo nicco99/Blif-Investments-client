@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { PlansPagination } from "./_components/PlansPagination";
 import ShowPlans from "@/components/filters/ShowPlans";
-import { filterPlansWithCategoryId } from "@/hooks/filters";
 import { FloatingFilter } from "@/components/filters/FloatingFilter";
 
 export const metadata: Metadata = {
@@ -43,15 +42,15 @@ const PlansPage = async ({ searchParams }: Props) => {
   };
   const sort = searchParams?.sort;
 
-  const plans = await filterPlansWithCategoryId({ filters, sort });
+  // const plans = await filterPlansWithCategoryId({ filters, sort });
   return (
-    <section className="relative flex flex-col items-center  py-8 md:py-10 lg:py-12 xl:py-16">
-      <div className="px-5 md:px-8 lg:px-12 w-full">
+    <section className="relative flex flex-col items-center py-8 md:py-10 lg:py-12 xl:py-16">
+      <div className="w-full px-5 md:px-8 lg:px-12">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
-          <h1 className="font-bold text-4xl md:text-5xl text-center">
+          <h1 className="text-4xl font-bold text-center md:text-5xl">
             All plans
           </h1>
-          <ShowPlans plans={plans} />
+          <ShowPlans />
           <PlansPagination />
         </div>
       </div>
