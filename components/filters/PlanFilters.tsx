@@ -69,7 +69,11 @@ export const PlanFilters = () => {
     filter.bdrm.length === 0 &&
     filter.btrm.length === 0 &&
     filter.flrs.length === 0 &&
-    !filter.prce.isCustom;
+    !filter.prce.isCustom &&
+    !(
+      filter.prce.range[0] !== DEFAULT_CUSTOM_PRICE[0] ||
+      filter.prce.range[1] !== DEFAULT_CUSTOM_PRICE[1]
+    );
 
   const sizeSearchParams = new URLSearchParams(searchParams);
   const handleApplyFilter = () => {
@@ -103,7 +107,7 @@ export const PlanFilters = () => {
           value={category}
           className="border-b border-gray-400"
         >
-          <AccordionTrigger className="font-bold w-full text-start">
+          <AccordionTrigger className="w-full font-bold text-start">
             Number of {label}
           </AccordionTrigger>
           <AccordionContent>
@@ -135,7 +139,7 @@ export const PlanFilters = () => {
         </AccordionItem>
       ))}
       <AccordionItem value="price" className="border-b border-gray-400">
-        <AccordionTrigger className="font-bold w-full text-start">
+        <AccordionTrigger className="w-full font-bold text-start">
           Price
         </AccordionTrigger>
         <AccordionContent>
@@ -165,7 +169,7 @@ export const PlanFilters = () => {
                 </label>
               </li>
             ))}
-            <li className="flex justify-center flex-col gap-2">
+            <li className="flex flex-col justify-center gap-2">
               <div className="flex items-center gap-x-3">
                 <input
                   type="radio"
@@ -232,10 +236,10 @@ export const PlanFilters = () => {
       </AccordionItem>
       <div className="flex mt-10 gap-x-2">
         <Button
-          variant="secondary"
+          variant="destructive"
           disabled={disabled}
           onClick={handleClearFilters}
-          className="w-full disabled:opacity-30"
+          className="w-full"
         >
           Clear Filters
         </Button>
