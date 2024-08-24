@@ -54,7 +54,7 @@ export const Footer = () => {
                 />
                 <Button
                   type="submit"
-                  className="w-full h-12 text-lg font-bold transition-all duration-700 ease-in-out bg-blue-500"
+                  className="w-full h-12 text-lg font-bold transition-all duration-700 ease-in-out bg-[#x0951C3]"
                 >
                   Sign up
                 </Button>

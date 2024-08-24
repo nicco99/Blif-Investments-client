@@ -11,7 +11,7 @@ type Props = {
 
 export const CategoryCard = async ({ category }: Props) => {
   const image = await imageFromPlanToCategory(category.id);
-  
+
   return (
     <Link href={`/collections/${category.id}`} prefetch={false}>
       <div className="relative aspect-video group rounded-lg overflow-hidden hover:z-20 lg:hover:drop-shadow-xl transition-all ease-in-out duration-700 cursor-pointer before:absolute before:z-10 before:h-full before:w-full before:bg-gray-700 before:opacity-40 before:content-['']">
@@ -20,7 +20,7 @@ export const CategoryCard = async ({ category }: Props) => {
             src={`${process.env.NEXT_PUBLIC_API_URL}/${image}`}
             alt="Plan"
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+            sizes="(min-width: 1800px) 388px, (min-width: 1280px) calc(20.8vw + 18px), (min-width: 1040px) calc(33.18vw - 41px), (min-width: 780px) calc(41.67vw - 36px), (min-width: 640px) calc(50vw - 28px), calc(75vw - 22px)"
             quality={30}
             className="object-cover group-hover:scale-110 transition ease-in-out duration-700 z-[1]"
           />

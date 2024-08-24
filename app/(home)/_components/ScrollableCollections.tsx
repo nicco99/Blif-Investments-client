@@ -24,11 +24,10 @@ export const ScrollableCollections = async () => {
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">
             <div className="flex flex-col">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
-                Plans for every family size
+                Discover the Perfect Home for You
               </h2>
               <p className="mt-5 lg:mt-8 text-sm sm:text-base">
-                We believe that every family deserves a home that perfectly fits
-                their unique needs and lifestyle
+                Choose from a range of designs that match your style and needs.
               </p>
             </div>
             <div className="flex lg:items-end">

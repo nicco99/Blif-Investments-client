@@ -21,7 +21,7 @@ type Props = {
 export const PlanCard = ({ aspect, plan }: Props) => {
   const planPrice = formattedPrice(plan.price);
   return (
-    <div className="flex flex-col group lg:hover:drop-shadow-xl border border-slate-300 rounded-lg lg:hover:-translate-y-2 transition-all ease-in-out duration-500">
+    <div className="flex flex-col transition-all duration-500 ease-in-out border rounded-lg group lg:hover:drop-shadow-xl border-slate-300 lg:hover:-translate-y-2">
       <div className="relative">
         <Link href={`/plans/${plan.id}`} prefetch={false}>
           <div
@@ -37,7 +37,7 @@ export const PlanCard = ({ aspect, plan }: Props) => {
               priority
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+              sizes="(min-width: 1800px) 376px, (min-width: 1280px) 20.8vw, (min-width: 1040px) calc(33.18vw - 56px), (min-width: 780px) calc(41.67vw - 45px), calc(50vw - 38px)"
               quality={30}
               className="absolute object-cover z-[2] hover:opacity-0 transition ease-in-out duration-700"
             />
@@ -47,56 +47,56 @@ export const PlanCard = ({ aspect, plan }: Props) => {
               fill
               placeholder="blur"
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 30vw"
+              sizes="(min-width: 1800px) 376px, (min-width: 1280px) 20.8vw, (min-width: 1040px) calc(33.18vw - 56px), (min-width: 780px) calc(41.67vw - 45px), calc(50vw - 38px)"
               quality={30}
               className="absolute object-cover z-[1]"
             />
           </div>
         </Link>
       </div>
-      <div className="flex flex-col rounded-b-lg w-full p-5 pt-4 bg-white">
+      <div className="flex flex-col w-full p-5 pt-4 bg-white rounded-b-lg">
         <Link
           href={`/plans/${plan.id}`}
           prefetch={false}
-          className="font-bold text-base line-clamp-1"
+          className="text-base font-bold line-clamp-1"
         >
           {plan.plan_name}
         </Link>
-        <p className="text-gray-600 text-base mt-2 mb-3">From {planPrice}</p>
+        <p className="mt-2 mb-3 text-base text-gray-600">From {planPrice}</p>
         <div className="grid grid-cols-3 gap-y-4 justify-items-end">
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-            <HousePlus className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+            <HousePlus className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.floors} Floors
             </span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-            <Bed className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+            <Bed className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.no_of_bedrooms} Bedrooms
             </span>
           </div>
-          <div className="col-span-1 flex w-full flex-col items-center justify-center">
-            <Bath className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+          <div className="flex flex-col items-center justify-center w-full col-span-1">
+            <Bath className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.no_of_bathrooms} Bathrooms
             </span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-            <MoveVertical className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+            <MoveVertical className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.plan_height} m
             </span>
           </div>
           <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-            <MoveHorizontal className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+            <MoveHorizontal className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.plan_length} m
             </span>
           </div>
-          <div className="col-span-1 flex w-full flex-col items-center justify-center">
-            <MapPinned className="h-5 w-5" />
-            <span className="text-xs font-medium mt-2">
+          <div className="flex flex-col items-center justify-center w-full col-span-1">
+            <MapPinned className="w-5 h-5" />
+            <span className="mt-2 text-xs font-medium">
               {plan.plan_size} m<sup className="text-xs">2</sup>
             </span>
           </div>
