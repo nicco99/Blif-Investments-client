@@ -54,21 +54,40 @@ export const formattedPrice2 = (amount: string) => {
   return "KES " + newNumber;
 };
 
-export const searchPlanWithName = async (search: string | undefined) => {
-  if (search) {
-    const plans = await getPlans();
-    const keys = ["plan_name", "description"] as const;
-    const searchedPlans: Plan[] = plans.filter((plan: Plan) =>
-      keys.some(
-        (key) =>
-          plan[key as keyof Plan] &&
-          plan[key as keyof Plan]
-            .toString()
-            .toLowerCase()
-            .includes(search.toLowerCase())
-      )
-    );
+// export const searchPlanWithName = async (search: string | undefined) => {
+//   if (search) {
+//     const plans = await getPlans();
+//     const keys = ["plan_name", "description"] as const;
+//     const searchedPlans: Plan[] = plans.filter(
+//       (plan: Plan) =>
+//         keys.some(
+//           (key) =>
+//             plan[key as keyof Plan] &&
+//             plan[key as keyof Plan]
+//               .toString()
+//               .toLowerCase()
+//               .includes(search.toLowerCase())
+//         ) ||
+//         plan.features.some((feature) =>
+//           feature.description.toString().toLowerCase().includes(search.toLowerCase())
+//         )
+//     );
 
-    return searchedPlans;
-  }
+//     return searchedPlans;
+//   }
+// };
+
+export const searchPlanWithName = async (search: string | undefined) => {
+  if (!search) return [];
+
+  const plans = await getPlans();
+  const keys = ["plan_name", "description"] as const;
+
+  const searchedPlans: Plan[] = plans.filter((plan: Plan) =>
+    keys.some((key) =>
+      plan[key]?.toLowerCase().includes(search.toLowerCase())
+    )
+  );
+
+  return searchedPlans;
 };

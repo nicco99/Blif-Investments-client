@@ -49,16 +49,16 @@ export const ProductImages = ({ images, urlPath }: Props) => {
           priority
           placeholder="blur"
           blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
-          sizes="(max-width: 1023px) 100vw, 40vw"
+          sizes="(min-width: 1800px) 704px, (min-width: 1040px) calc(41.08vw - 27px), 100vw"
           className="object-cover lg:rounded-xl"
         />
         <Dialog>
           <DialogTrigger>
-            <div className="hidden lg:block hover:scale-110 transition-all ease-in-out duration-150 absolute right-5 bottom-5 bg-white p-3 rounded-full">
-              <ZoomIn className="h-5 w-5" />
+            <div className="absolute hidden p-3 transition-all duration-150 ease-in-out bg-white rounded-full lg:block hover:scale-110 right-5 bottom-5">
+              <ZoomIn className="w-5 h-5" />
             </div>
           </DialogTrigger>
-          <DialogContent className=" h-full">
+          <DialogContent className="h-full ">
             <div className="flex items-center justify-center">
               <Image
                 src={imageUrl}
@@ -75,7 +75,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex overflow-x-scroll no-scrollbar gap-4 p-3 lg:p-0 lg:mt-8">
+      <div className="flex gap-4 p-3 overflow-x-scroll no-scrollbar lg:p-0 lg:mt-8">
         <Carousel className="w-full">
           <CarouselContent>
             {images.map((image: ImageProp, idx: number) => (
@@ -84,7 +84,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
                 key={image.id}
               >
                 <div
-                  className="aspect-square w-full relative cursor-pointer"
+                  className="relative w-full cursor-pointer aspect-square"
                   onClick={() => imageOnclick(idx)}
                 >
                   <Image
@@ -93,7 +93,7 @@ export const ProductImages = ({ images, urlPath }: Props) => {
                     fill
                     placeholder="blur"
                     blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8/RMAArUB1huQdQEAAAAASUVORK5CYII="
-                    sizes="20vw"
+                    sizes="(min-width: 1280px) 128px, (min-width: 1040px) 96px, (min-width: 640px) 128px, 96px"
                     className="object-cover rounded-lg lg:rounded-xl"
                   />
                 </div>

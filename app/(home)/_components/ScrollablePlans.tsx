@@ -24,15 +24,15 @@ export const ScrollablePlans = async () => {
           <div className="flex flex-col lg:flex-row space-y-4 justify-between">
             <div className="flex flex-col">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
-                Plans for every family size
+                Explore Homes for Every Family
               </h2>
               <p className="mt-5 lg:mt-8 text-sm sm:text-base">
-                We believe that every family deserves a home that perfectly fits
-                their unique needs and lifestyle
+                Find the perfect match with our diverse range of plans, crafted
+                for all lifestyles.
               </p>
             </div>
             <div className="flex lg:items-end">
-            <Link
+              <Link
                 prefetch={false}
                 href="/plans"
                 className="flex items-center gap-x-3 group text-xs sm:text-sm hover:underline hover:underline-offset-4 transition-all ease-in-out duration-700"

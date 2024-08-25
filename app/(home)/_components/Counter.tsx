@@ -18,7 +18,7 @@ export const Counter = () => {
             +{counter && <CountUp end={50} />}
           </h2>
           <p className="font-bold text-xl md:text-2xl lg:text-3xl text-center tracking-tighter">
-            Dream homes brought to life with Blif Investment
+            Innovative Designs Realized with Blif Investment
           </p>
         </div>
       </ScrollTrigger>
