@@ -44,8 +44,8 @@ export const ScrollablePlans = async () => {
               </Link>
             </div>
           </div>
-          <Carousel className="hidden sm:flex w-full">
-            <CarouselContent className="w-full pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
+          <Carousel className="hidden sm:block w-full">
+            <CarouselContent className="w-full pt-3 lg:pb-12">
               {slicedPlans.map((plan: Plan) => (
                 <CarouselItem
                   key={plan.id}
