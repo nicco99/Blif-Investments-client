@@ -1,18 +1,33 @@
-"use client";
+import { Search, ShoppingBag } from "lucide-react";
+import Link from "next/link";
 
-import { Search } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 export const SearchBar = () => {
-  const router = useRouter();
   return (
-    <Button
-      onClick={() => router.push("/search")}
-      variant="ghost"
-      className="flex items-center cursor-pointer justify-self-end hover:bg-transparent hover:scale-110 transition-all ease-in-out duration-150"
-    >
-      <Search aria-label="search" className="h-6 w-6" />
-    </Button>
+    <TooltipProvider delayDuration={200}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Link
+            href="/search"
+            className="flex items-center transition-all duration-150 ease-in-out cursor-pointer hover:bg-transparent hover:scale-110"
+          >
+            <Search aria-label="search" className="w-6 h-6" />
+          </Link>
+        </TooltipTrigger>
+        <TooltipContent
+          side="bottom"
+          align="start"
+          className="text-white bg-gray-700"
+        >
+          <p className="text-sm">Search</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 };

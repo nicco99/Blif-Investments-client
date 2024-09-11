@@ -40,7 +40,7 @@ const ContactUsPage = () => {
           </div>
           <div className="px-5 md:px-8 lg:px-12 max-w-[1600px] mx-auto">
             <div className="flex flex-col mx-auto text-center gap-y-4 md:gap-y-6 md:max-w-xl">
-              <span className="text-2xl font-bold">About Us</span>
+              <span className="text-2xl font-bold">Why Us?</span>
               <p className="sm:text-lg">
                 Blif investment is a Construction Management firm doing design
                 and building of affordable modern homes and residential

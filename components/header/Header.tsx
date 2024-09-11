@@ -2,6 +2,7 @@ import { Navbar } from "./Navbar";
 import { Logo } from "./Logo";
 import { MobileNav } from "./MobileNav";
 import { SearchBar } from "./SearchBar";
+import { Cart } from "./Cart";
 
 export const Header = () => {
   return (
@@ -19,7 +20,10 @@ export const Header = () => {
             <Navbar />
           </div>
           {/* ICONS */}
-          <SearchBar />
+          <div className="flex items-center gap-x-5 justify-self-end">
+            <SearchBar />
+            <Cart />
+          </div>
         </div>
       </div>
     </header>

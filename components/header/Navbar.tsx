@@ -10,7 +10,7 @@ export const Navbar = () => {
 
   return (
     <nav className="flex items-center gap-x-10">
-      <Link
+      {/* <Link
         prefetch={false}
         href="/collections"
         className={cn(
@@ -20,7 +20,7 @@ export const Navbar = () => {
         )}
       >
         Collections
-      </Link>
+      </Link> */}
       <Link
         prefetch={false}
         href="/plans"

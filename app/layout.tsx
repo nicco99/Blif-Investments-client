@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Dosis } from "next/font/google";
 
-import { MarqueeComp } from "@/components/Marquee";
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/Footer";
 
@@ -41,7 +40,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <MarqueeComp />
         <Header />
         {children}
         <Footer />

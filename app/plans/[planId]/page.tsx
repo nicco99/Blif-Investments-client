@@ -54,7 +54,7 @@ const PlanIdPage = async ({ params }: Props) => {
   );
 
   return (
-    <section className=" pb-8 md:pb-10 lg:pb-12">
+    <section className="pb-8  md:pb-10 lg:pb-12">
       <div className="lg:px-12">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <div className="lg:p-12 lg:rounded-3xl">
@@ -64,87 +64,71 @@ const PlanIdPage = async ({ params }: Props) => {
                 <ProductImages images={plan.images} urlPath={URL} />
               </div>
               {/* TEXTS */}
-              <div className="w-full px-3 sm:px-5 md:px-8 lg:px-0 lg:w-1/2 flex flex-col gap-y-6 xl:gap-y-10">
-                <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold">
+              <div className="flex flex-col w-full px-3 sm:px-5 md:px-8 lg:px-0 lg:w-1/2 gap-y-6 xl:gap-y-10">
+                <h1 className="text-4xl font-bold lg:text-5xl xl:text-6xl">
                   {plan.plan_name}
                 </h1>
                 <div className="flex flex-col gap-y-2">
                   <h3 className="font-bold sm:text-xl">Description</h3>
-                  <p className="text-gray-500 text-base sm:text-lg">
+                  <p className="text-base text-gray-500 sm:text-lg">
                     {plan.description}
                   </p>
                 </div>
                 <div className="h-[2px] bg-gray-200" />
-                <div className="grid grid-cols-3 gap-y-6 justify-items-center mb-6 lg:mb-0">
+                <div className="grid grid-cols-3 mb-6 gap-y-6 justify-items-center lg:mb-0">
                   <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Floors
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.floors}
                     </span>
                   </div>
                   <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Bedrooms
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.no_of_bedrooms}
                     </span>
                   </div>
-                  <div className="col-span-1 flex w-full flex-col items-center justify-center">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                  <div className="flex flex-col items-center justify-center w-full col-span-1">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Bathrooms
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.no_of_bathrooms}
                     </span>
                   </div>
                   <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
-                      Height
-                    </span>
-                    <span className="text-base text-gray-500 mt-2">
-                      {plan.plan_height} m
-                    </span>
-                  </div>
-                  <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Length
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.plan_length} m
                     </span>
                   </div>
-                  <div className="col-span-1 flex w-full flex-col items-center justify-center">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                  <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Size
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.plan_size} m<sup className="text-xs">2</sup>
                     </span>
                   </div>
-                  <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
-                      Price
+                  <div className="flex flex-col items-center justify-center w-full col-span-1">
+                    <span className="text-base font-bold text-center sm:text-lg">
+                      Construction Cost
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {formattedPrice2(formattedPrice(plan.price))}
                     </span>
                   </div>
                   <div className="col-span-1 flex w-full flex-col items-center justify-center after:content-[''] after:h-full after:text-gray-500 relative after:absolute after:right-0 after:border after:border-gray-300">
-                    <span className="font-bold text-center text-base sm:text-lg">
-                      Price / m<sup className="text-xs">2</sup>
-                    </span>
-                    <span className="text-base text-gray-500 mt-2">
-                      {formattedPrice2(formattedPrice(plan.price_per_sqm))}
-                    </span>
-                  </div>
-                  <div className="col-span-1 flex w-full flex-col items-center justify-center">
-                    <span className="font-bold text-center text-base sm:text-lg">
+                    <span className="text-base font-bold text-center sm:text-lg">
                       Plinth Area
                     </span>
-                    <span className="text-base text-gray-500 mt-2">
+                    <span className="mt-2 text-base text-gray-500">
                       {plan.plinth_area} m<sup className="text-xs">2</sup>
                     </span>
                   </div>
@@ -152,27 +136,27 @@ const PlanIdPage = async ({ params }: Props) => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center px-3 sm:px-5 md:px-8 lg:px-0 pb-8 md:pb-10 lg:pb-12 xl:pb-16">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-5">
+          <div className="flex flex-col items-center px-3 pb-8 sm:px-5 md:px-8 lg:px-0 md:pb-10 lg:pb-12 xl:pb-16">
+            <h1 className="mb-5 text-4xl font-bold lg:text-5xl xl:text-6xl">
               Features included
             </h1>
-            <ul className="grid grid-cols-2 sm:grid-cols-3 w-full gap-y-6 gap-x-10 px-10 py-6 sm:py-8 md:py-10 lg:py-12">
+            <ul className="grid w-full grid-cols-2 px-10 py-6 sm:grid-cols-3 gap-y-6 gap-x-10 sm:py-8 md:py-10 lg:py-12">
               {plan.features.map((feature: Feature) => (
                 <li
                   key={feature.id}
-                  className="flex gap-x-1 text-lg sm:justify-center items-center justify-start"
+                  className="flex items-center justify-start text-lg gap-x-1 sm:justify-center"
                 >
-                  <SquareCheckBig className="h-4 w-4 shrink-0 text-green-500" />
+                  <SquareCheckBig className="w-4 h-4 text-green-500 shrink-0" />
                   {feature.description}
                 </li>
               ))}
             </ul>
           </div>
           <div className="px-3 sm:px-5 md:px-8 lg:px-0">
-            <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-5">
+            <h1 className="mb-5 text-3xl font-bold lg:text-4xl xl:text-5xl">
               You may also like
             </h1>
-            <div className="flex overflow-x-scroll no-scrollbar gap-x-3 pt-3 lg:pb-12 lg:px-3 lg:-mx-3">
+            <div className="flex pt-3 overflow-x-scroll no-scrollbar gap-x-3 lg:pb-12 lg:px-3 lg:-mx-3">
               {filteredPlans.map((plan: Plan) => (
                 <PlanCard key={plan.id} aspect plan={plan} />
               ))}

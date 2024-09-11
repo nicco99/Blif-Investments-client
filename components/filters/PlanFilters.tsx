@@ -128,7 +128,7 @@ export const PlanFilters = () => {
       ))}
       <AccordionItem value="price" className="border-b border-gray-400">
         <AccordionTrigger className="w-full font-bold text-start">
-          Price
+          Construction Cost
         </AccordionTrigger>
         <AccordionContent>
           <ul>
