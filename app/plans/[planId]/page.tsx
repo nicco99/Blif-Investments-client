@@ -10,6 +10,7 @@ import {
   formattedPrice,
   formattedPrice2,
 } from "@/hooks/filters";
+import { PurchaseForm } from "./_components/PurchaseForm";
 
 type Props = {
   params: {
@@ -54,7 +55,7 @@ const PlanIdPage = async ({ params }: Props) => {
   );
 
   return (
-    <section className="pb-8  md:pb-10 lg:pb-12">
+    <section className="pb-8 md:pb-10 lg:pb-12">
       <div className="lg:px-12">
         <div className="flex flex-col w-full gap-y-8 md:gap-y-12 max-w-[1600px] mx-auto">
           <div className="lg:p-12 lg:rounded-3xl">
@@ -133,6 +134,7 @@ const PlanIdPage = async ({ params }: Props) => {
                     </span>
                   </div>
                 </div>
+                <PurchaseForm price={formattedPrice2(formattedPrice(plan.price))} />
               </div>
             </div>
           </div>
