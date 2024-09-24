@@ -1,19 +1,13 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 
 export const PurchaseForm = ({ price }: { price: string }) => {
   const [fileType, setFileType] = useState("CAD + PDF");
   const [archDrawings, setArchDrawings] = useState(true);
   const [structDrawings, setStructDrawings] = useState(false);
-
-  const calculatePrice = () => {
-    let basePrice = 300;
-    if (fileType === "CAD + PDF") basePrice += 24;
-    if (structDrawings) basePrice += 100;
-    return basePrice;
-  };
 
   return (
     <div className="w-full">
